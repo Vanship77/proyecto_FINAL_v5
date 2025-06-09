@@ -3,7 +3,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CrudComponent } from './components/crud/crud.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { TiendaComponent } from './components/tienda/tienda.component';
+
 import { HomeComponent } from './components/home/home.component';
 import { EventoFormComponent } from './components/evento-form/evento-form.component';
 import { EventoListComponent } from './components/evento-list/evento-list.component';
@@ -21,7 +21,6 @@ export const routes: Routes = [
   { path: 'footer', component: FooterComponent },
   { path: 'crud', component: CrudComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'tienda', component: TiendaComponent },
   {path : 'publicaciones', component: PublicacionesComponent },
  { path: 'registro', component: RegistroComponent },
  { path: 'login', component: LoginComponent },

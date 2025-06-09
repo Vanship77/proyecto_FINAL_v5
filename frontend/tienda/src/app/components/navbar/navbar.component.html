@@ -67,10 +67,10 @@
       <a class="nav-link d-flex align-items-center gap-2" href="/registro">
         <i class="bi bi-person-plus"></i> <span>Crear cuenta</span>
       </a>
-      <button class="btn btn-light btn-sm my-2">
+      <button class="btn btn-light btn-sm my-2" (click)="loginWithGithub()">
         <i class="bi bi-github"></i> GitHub
       </button>
-      <button class="btn btn-light btn-sm my-2">
+      <button class="btn btn-light btn-sm my-2" (click)="loginWithGoogle()">
         <i class="bi bi-google"></i> Google
       </button>
       <button class="btn btn-warning btn-sm my-3 w-100 d-flex align-items-center justify-content-center gap-2" (click)="startSimulation()">

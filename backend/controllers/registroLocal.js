@@ -9,13 +9,14 @@ exports.registerLocal = async (req, res) => {
     if (existingUser) return res.status(400).json({ message: 'Ya existe el usuario' });
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    
+
     const user = new User({
       firstName,
       lastName,
       email,
       password: hashedPassword,
       provider: 'local',
+      
     });
 
     await user.save();

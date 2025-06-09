@@ -7,7 +7,7 @@
     <img src="logo_memento.png" alt="Logo Avashi'kol" class="logo-hero" />
   </div>
 </section>
-
+<button class="dark-mode-toggle" (click)="activarDarkMode()">🌓 Modo Oscuro</button>
 <div class="galeria">
   <div
     class="carta"
@@ -15,21 +15,23 @@
     [ngStyle]="{ 'background-image': 'url(' + evento.imagen + ')' }"
     (click)="toggleDetalles(evento._id)"
   >
+  
     <div class="texto-fijo">
       <h4 class="card-title">{{ evento.titulo }}</h4>
       <p class="card-text">{{ evento.descripcion }}</p>
+      <p class="card-text"><strong>Fecha:</strong> {{ evento.fecha | date }}</p>
+      <p class="card-text"><strong>Lugar:</strong> {{ evento.lugar }}</p>
+      <p class="card-text"><strong>Precio:</strong> ${{ evento.precio }}</p>
     </div>
 
 <div *ngIf="detallesVisibles === evento._id" class="detalles-adicionales">
       <div class="imagen-detalles">
         <img [src]="evento.imagen" alt="{{ evento.titulo }}" />
       </div>
-      <p class="card-text"><strong>📅 Fecha:</strong> {{ evento.fecha | date }}</p>
-      <p class="card-text"><strong>📍 Lugar:</strong> {{ evento.lugar }}</p>
-      <p class="card-text"><strong>💰 Precio:</strong> ${{ evento.precio }}</p>
+      
     </div>
 
-    <div class="botones">
+    <div class="botones"> 
       <button class="detalles" (click)="toggleDetalles(evento._id); $event.stopPropagation()">
         <i class="fas fa-eye"></i>
       </button>

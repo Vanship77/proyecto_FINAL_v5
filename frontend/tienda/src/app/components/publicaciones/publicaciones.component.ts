@@ -27,6 +27,9 @@ export class PublicacionesComponent implements OnInit {
       this.eventos = data;
     });
   }
+activarDarkMode() {
+  document.body.classList.toggle('dark-mode');
+}
 
   toggleDetalles(id?: string) {
     if (!id) return;
@@ -38,9 +41,11 @@ export class PublicacionesComponent implements OnInit {
     alert(`¡Te interesa el evento: ${evento.titulo}!`);
   }
 
-  getClaseCarta(index: number): string {
+  getClaseCarta(index: number, eventoId: string): string {
+    // Cambia la clase para quitar hover cuando detalles están abiertos
     const mod = index % 3;
-    if (mod === 0 || mod === 1) return 'carta doble';
-    else return 'carta grande';
+    const baseClass = (mod === 0 || mod === 1) ? 'carta doble' : 'carta grande';
+    // Si la carta está abierta, le quitamos clase hover
+    return this.detallesVisibles === eventoId ? baseClass + ' no-hover' : baseClass;
   }
 }

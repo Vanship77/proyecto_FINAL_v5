@@ -3,12 +3,18 @@ const eventoRutas = require('./eventoRoutes');
 const passport = require('passport');
 const authRoutes = require('./authRoutes');
 
+
+//documentacion
 router.use('/',require('./swagger'));
+
+//rutas de eventos
 router.use('/api/eventos', eventoRutas);
 
-router.use('/', authRoutes);
+//oauth rutas
 router.get('/login/github', passport.authenticate('github'), (req, res) => {});
 router.get('/login/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+//callback rutas 
+router.use('/', authRoutes);
 
 router.get('/logout', function(req, res, next) {
   req.logout(function(err) {

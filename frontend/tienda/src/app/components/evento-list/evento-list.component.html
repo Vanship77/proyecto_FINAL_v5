@@ -25,12 +25,18 @@
         <td>{{ evento.lugar }}</td>
         <td>{{ evento.precio | currency:'USD':'symbol':'1.2-2' }}</td>
         <td>
-          <img *ngIf="evento.imagen" [src]="evento.imagen" alt="Imagen evento" class="imagen-mini">
+          <img *ngIf="evento.imagen" [src]="evento.imagen" alt="Imagen evento" class="imagen-mini" />
         </td>
         <td class="acciones">
-          <button class="btn btn-info" (click)="ver(evento)"><i class="fas fa-eye"></i> Ver</button>
-          <button class="btn btn-warning" (click)="editar(evento)"><i class="fas fa-edit"></i> Editar</button>
-          <button class="btn btn-danger" (click)="evento._id && eliminar(evento._id)"><i class="fas fa-trash-alt"></i> Eliminar</button>
+          <button class="btn btn-info" (click)="ver(evento)">
+            <i class="fas fa-eye"></i> Ver
+          </button>
+          <button class="btn btn-warning" (click)="editar(evento)">
+            <i class="fas fa-edit"></i> Editar
+          </button>
+          <button class="btn btn-danger" (click)="evento._id && eliminar(evento._id)">
+            <i class="fas fa-trash-alt"></i> Eliminar
+          </button>
         </td>
       </tr>
     </tbody>
@@ -40,7 +46,7 @@
     <div class="modal-content">
       <h3 *ngIf="!modoEdicion"><i class="fas fa-info-circle"></i> Detalles del Evento</h3>
       <h3 *ngIf="modoEdicion">
-        <i class="fas" [ngClass]="eventoSeleccionado._id ? 'fa-edit' : 'fa-plus' "></i>
+        <i class="fas" [ngClass]="eventoSeleccionado._id ? 'fa-edit' : 'fa-plus'"></i>
         {{ eventoSeleccionado._id ? 'Editar Evento' : 'Nuevo Evento' }}
       </h3>
 
@@ -71,9 +77,14 @@
         </label>
 
         <label>
-          <i class="fas fa-image"></i> URL Imagen:
-          <input type="url" [(ngModel)]="eventoSeleccionado.imagen" name="imagen" />
+          <i class="fas fa-image"></i> Imagen:
+          <input type="file" (change)="onFileSelected($event)" accept=".png, .jpg, .jpeg" />
         </label>
+
+        <p *ngIf="eventoSeleccionado.imagen">
+          <strong>Imagen actual:</strong><br />
+          <img [src]="eventoSeleccionado.imagen" alt="Imagen evento" class="imagen-evento" />
+        </p>
 
         <div class="botones-form">
           <button type="submit" [disabled]="!eventoForm.form.valid" class="btn btn-success">
@@ -102,4 +113,5 @@
     </div>
   </div>
 </div>
+
 <app-footer></app-footer>

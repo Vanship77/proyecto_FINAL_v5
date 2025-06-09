@@ -21,14 +21,14 @@ export class EventoService {
   }
 
   addEvento(evento: Evento): Observable<Evento> {
-    return this._http.post<Evento>(this.url, evento,{withCredentials: true});
+    return this._http.post<Evento>(this.url, evento);
   }
 
   updateEvento(id: string, evento: Evento): Observable<Evento> {
-    return this._http.put<Evento>(`${this.url}/${id}`, evento,{withCredentials: true});
+    return this._http.put<Evento>(`${this.url}/${id}`, evento);
   }
 
   deleteEvento(id: string): Observable<any> {
-    return this._http.delete(`${this.url}/${id}`,{withCredentials: true});
+    return this._http.delete(`${this.url}/${id}`);
   }
 }

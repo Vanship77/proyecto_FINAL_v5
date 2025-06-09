@@ -1,192 +1,213 @@
+:root {
+  --bg: #f9f9f9;
+  --text: #222;
+  --card-bg: rgba(0, 0, 0, 0.6);
+  --card-overlay: rgba(0, 0, 0, 0.4);
+  --highlight: #512da8;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background 0.4s, color 0.4s;
+}
+
+body.dark-mode {
+  --bg: #121212;
+  --text: #e0e0e0;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --card-overlay: rgba(255, 255, 255, 0.1);
+  --highlight: #bb86fc;
+  --shadow: rgba(255, 255, 255, 0.1);
+}
+
+/* === HERO === */
 .hero-section {
-  background: linear-gradient(135deg, #064420 0%, #022b17 100%);
-  color: #d0f4d8;
-  padding: 4rem 2rem 6rem;
-  position: relative;
+  background: #311b92;
+  color: rgb(6, 4, 4);
   text-align: center;
-  overflow: hidden;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-.overlay-fondo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.15;
-  filter: blur(2px);
-  z-index: 1;
-}
-
-.titulo-destacado {
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 20px #00ff84aa;
-}
-
-.subtitulo {
-  font-size: 1.6rem;
-  margin-bottom: 2rem;
-  font-weight: 500;
+  padding: 60px 20px;
 }
 
 .logo-hero {
-  max-width: 160px;
-  filter: drop-shadow(0 0 10px #00ff84aa);
+  width: 150px;
+  margin-top: 20px;
+  border-radius: 50%;
+  border: 3px solid white;
 }
 
+/* === BOTÓN DARK MODE === */
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--highlight);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 100;
+  font-weight: bold;
+}
+
+/* === GALERÍA === */
 .galeria {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.8rem;
-  padding: 2rem;
-  background: #212529;
+  gap: 20px;
+  padding: 40px;
 }
 
-.carta {
-  background-color: #064420;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
-  padding: 1rem;
-  color: #d0f4d8;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 400px;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
-  position: relative;
-  z-index: 1;
-}
-
-.carta:hover {
-   transform: scale(0.94) rotate(-0.75deg); /* escala al 94% y gira menos */
-  box-shadow: 0 14px 40px rgba(50, 255, 150, 0.8);
-}
-.carta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(6, 68, 32, 0.85);
-  border-radius: 16px;
-  z-index: 0;
-  transition: background 0.35s ease;
-}
-
-.carta:hover::before {
-  background: rgba(6, 68, 32, 0.65);
-}
-
-/* Título y descripción súper visibles */
-.card-title {
-  font-size: 1.8rem;
-  color: #ffffff;
-  font-weight: bold;
-  text-shadow: 0 0 10px #00ffccaa;
-  margin-bottom: 0.5rem;
-  position: relative;
-  z-index: 2;
-}
-
-.card-text {
-  font-size: 1.4rem;
-  color: #ffffff;
-  font-weight: 600;
-  text-shadow: 0 0 8px #00ffd5aa;
-  margin-bottom: 0.5rem;
-  position: relative;
-  z-index: 2;
-}
-
-.carta.dos,
-.carta.tres {
-  grid-column: span 1 !important;
-  min-height: 400px !important;
-}
-
-.detalles-adicionales {
-  margin-top: 1rem;
-  background: rgba(3, 35, 15, 0.85);
-  border-radius: 12px;
-  padding: 1.5rem;
-  color: #ffffff;
-  font-size: 1.3rem;
-  line-height: 1.8;
-  z-index: 2;
-  position: relative;
-  font-weight: 600;
-  text-shadow: 0 0 10px #00ffaaff;
-}
-
-.imagen-detalles {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.imagen-detalles img {
-  max-width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 255, 120, 0.7);
-}
-
-.botones {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  z-index: 2;
-  position: relative;
-}
-
-.botones button,
-.botones a {
-  background: #1b5e20;
-  border: none;
-  color: #e6f9e7;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0.6rem 1.4rem;
-  border-radius: 10px;
-  text-decoration: none;
-  box-shadow: 0 0 8px #1b5e20aa;
-}
-
-.botones button:hover,
-.botones a:hover {
-  background: #34a853;
-  transform: scale(1.1);
-  color: #d0ffd8;
-  box-shadow: 0 0 14px #34a853cc;
-}
-
-.btn-link {
-  text-decoration: none;
+@media (max-width: 1024px) {
+  .galeria {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
   .galeria {
     grid-template-columns: 1fr;
-    padding: 1rem;
   }
+}
 
-  .carta,
-  .carta.dos,
-  .carta.tres {
-    grid-column: span 1 !important;
-    min-height: 400px;
-  }
+.carta {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 16px;
+  min-height: 650px;
+  color: white;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.carta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  
+   background: rgba(63, 63, 63, 0.788); /* Aquí regulas la opacidad */
+  z-index: 0;
+  border-radius: 16px;
+}
+
+.carta:hover {
+  transform: scale(1.03);
+}
+
+.texto-fijo {
+  position: absolute;
+  bottom: 60px;
+  background: var(--card-bg);
+  padding: 15px;
+  width: 100%;
+  z-index: 1;
+}
+.card-title {
+    font-size: 100;
+
+     font-family: "Bungee", sans-serif;
+
+  font-optical-sizing:100px;
+  font-weight: 700;
+  font-style: normal;
+  color: #ffffff;
+  text-shadow:
+    -1px -1px 0 #000000,
+    1px -1px 0 #080707,
+    -1px 1px 0 #000000,
+    1px 1px 0 #030303;
+  line-height: 1.5;
+  padding: 0.5rem 0.2rem;
+  text-align: left;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+
+
+.card-text {
+  font-size: 1.2rem;
+  color: #ffffff;
+  line-height: 1.6;
+  text-align: justify;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* === DETALLES === */
+.detalles-adicionales {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--bg);
+  color: var(--text);
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagen-detalles img {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 16px;
+  box-shadow: 0 0 12px var(--shadow);
+}
+
+/* === BOTONES === */
+.botones {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+  z-index: 1;
+}
+
+.botones button,
+.botones a {
+  background: var(--card-bg);
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.botones button:hover,
+.botones a:hover {
+  background: var(--highlight);
+}
+
+
+/* Solo para el texto de descripción dentro de .texto-fijo */
+.texto-fijo > .card-text:first-of-type {
+  font-size: 1.2rem;
+  color: #ffffff;
+  font-style: italic;
+  line-height: 1.5;
+  max-height: 4.5em;       /* Limita altura para evitar que se desborde */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 0.3rem;
+  transition: max-height 0.4s ease;
+  cursor: pointer;
+}
+
+.texto-fijo > .card-text:first-of-type.expanded {
+  max-height: none;
+  overflow: visible;
+  background: #f0e6d2;
 }

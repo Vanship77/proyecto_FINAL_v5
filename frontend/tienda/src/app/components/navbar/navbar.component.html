@@ -7,21 +7,14 @@
     <button class="btn boton-de-menu" (click)="toggleSidebar()">
       <i class="bi bi-list fs-3"></i>
     </button>
-    <input type="search" class="form-control form-control-sm" placeholder="Buscar...">
+    
   </div>
 
   <a href="/home" class="brand-btn mx-auto">
-    <!-- Asegúrate de que el nombre del archivo tenga extensión -->
     <img src="logo_memento.png" alt="Logo Memento" style="height: 50px; max-width: 100%;">
   </a>
 
   <div class="d-flex align-items-center gap-2 ms-auto">
-    <button class="btn btn-light btn-sm">
-      <i class="bi bi-github"></i>
-    </button>
-    <button class="btn btn-light btn-sm">
-      <i class="bi bi-google"></i>
-    </button>
     <button id="boton-menu2" class="btn btn-light btn-sm position-relative" (click)="toggleSidebar2()" aria-label="boton-menu2">
       <i class="bi bi-person-circle fs-4"></i>
     </button>
@@ -42,20 +35,23 @@
     <a class="nav-link d-flex align-items-center gap-2" href="/contact">
       <i class="bi bi-envelope"></i> <span>Contacto</span>
     </a>
-    <a class="nav-link d-flex align-items-center gap-2" href="/eventos">
-      <i class="bi bi-box"></i> <span>Modificar Eventos</span>
-    </a>
     <a class="nav-link d-flex align-items-center gap-2" href="/publicaciones">
       <i class="bi bi-calendar3"></i> <span>Eventos Publicados</span>
     </a>
     <a class="nav-link d-flex align-items-center gap-2" href="/eventos">
       <i class="bi bi-info-circle"></i> <span>Saber más</span>
     </a>
+
+    <!-- Botón solo visible si está logueado -->
+    <ng-container *ngIf="isLoggedIn">
+      <a class="nav-link d-flex align-items-center gap-2 mt-3" href="/eventos">
+        <i class="bi bi-box"></i> <span>Modificar Eventos</span>
+      </a>
+    </ng-container>
   </nav>
 
   <div class="sidebar-footer px-3 mt-4">
     <a href="/soporte" class="text-white d-block mb-2">Soporte</a>
-    <a href="/recuperar" class="text-white d-block">¿Olvidaste tu contraseña?</a>
   </div>
 </div>
 
@@ -64,12 +60,32 @@
      =========================== -->
 <div [class.sidebar2-open]="sidebar2Open" class="sidebar2 pt-4">
   <nav class="nav flex-column px-3">
-    <a class="nav-link d-flex align-items-center gap-2" href="/login">
-      <i class="bi bi-box-arrow-in-right"></i> <span>Iniciar sesión</span>
-    </a>
-    <a class="nav-link d-flex align-items-center gap-2" href="/registro">
-      <i class="bi bi-person-plus"></i> <span>Crear cuenta</span>
-    </a>
+    <ng-container *ngIf="!isLoggedIn; else loggedInButtons">
+      <a class="nav-link d-flex align-items-center gap-2" href="/login">
+        <i class="bi bi-box-arrow-in-right"></i> <span>Iniciar sesión</span>
+      </a>
+      <a class="nav-link d-flex align-items-center gap-2" href="/registro">
+        <i class="bi bi-person-plus"></i> <span>Crear cuenta</span>
+      </a>
+      <button class="btn btn-light btn-sm my-2">
+        <i class="bi bi-github"></i> GitHub
+      </button>
+      <button class="btn btn-light btn-sm my-2">
+        <i class="bi bi-google"></i> Google
+      </button>
+      <button class="btn btn-warning btn-sm my-3 w-100 d-flex align-items-center justify-content-center gap-2" (click)="startSimulation()">
+        <i class="bi bi-play-circle"></i> Simulación
+      </button>
+    </ng-container>
+
+    <ng-template #loggedInButtons>
+      <button class="btn btn-light btn-sm my-2 w-100 d-flex align-items-center justify-content-center gap-2">
+        <i class="bi bi-person-lines-fill"></i> Perfil
+      </button>
+      <button class="btn btn-danger btn-sm my-2 w-100 d-flex align-items-center justify-content-center gap-2" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+      </button>
+    </ng-template>
   </nav>
 </div>
 

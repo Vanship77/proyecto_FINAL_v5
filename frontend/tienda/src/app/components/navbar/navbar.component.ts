@@ -16,4 +16,7 @@ export class NavbarComponent {
   toggleSidebar2() {
     this.sidebar2Open = !this.sidebar2Open;
   }
+  redirectToOAuth(provider: 'google' | 'github') {
+  window.location.href = `http://localhost:8080/login/${provider}`;
+}
 }

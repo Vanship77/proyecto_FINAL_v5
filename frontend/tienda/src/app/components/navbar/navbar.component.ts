@@ -23,7 +23,8 @@ export class NavbarComponent {
 
   logout() {
     this.isLoggedIn = false;
-    console.log('👋 Sesión cerrada');
+    window.open('http://localhost:8080/logout', '_self');
+    console.log('🚪 Sesión cerrada');
   }
 
   startSimulation() {
@@ -33,5 +34,11 @@ export class NavbarComponent {
     } else {
       this.logout();
     }
+  }
+  loginWithGoogle() {
+    window.open('http://localhost:8080/login/google');
+  }
+  loginWithGithub() {
+    window.open('http://localhost:8080/login/github');
   }
 }

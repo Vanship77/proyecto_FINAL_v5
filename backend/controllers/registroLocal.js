@@ -15,8 +15,7 @@ exports.registerLocal = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
-      provider: 'local',
-      
+      provider: 'local'
     });
 
     await user.save();

@@ -10,7 +10,13 @@ router.get('/login/github', clearSessionIfExists, passport.authenticate('github'
 router.get('/github/callback',
   passport.authenticate('github', { failureRedirect: '/home', session: true }),
   (req, res) => {
-    req.session.user = req.user;
+    
+    req.session.user = {
+      _id: req.user._id,               
+      displayName: req.user.displayName,
+      photos: req.user.photos,
+      
+    };
     res.redirect('http://localhost:4200/home');
   });
 
@@ -19,11 +25,17 @@ router.get('/login/google', clearSessionIfExists,
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
+
 // Callback Google
 router.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/home', session: true }),
   (req, res) => {
-    req.session.user = req.user;
+    req.session.user = {
+      _id: req.user._id,
+      displayName: req.user.displayName,
+      photos: req.user.photos,
+      
+    };
     res.redirect('http://localhost:4200/home');
   });
 

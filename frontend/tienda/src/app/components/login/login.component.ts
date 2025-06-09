@@ -16,23 +16,16 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  soloLetras(event: KeyboardEvent) {
-    const char = event.key;
-    if (!/^[a-zA-Z]+$/.test(char)) {
-      event.preventDefault();
-    }
-  }
-
   onSubmit() {
     if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
-      console.log('Login exitoso con:', username, password);
-      // Aquí podrías mandar al backend o guardar sesión
+      const { email, password } = this.loginForm.value;
+      console.log('Login exitoso con:', email, password);
+      // Aquí mandar al backend o guardar sesión
     }
   }
 

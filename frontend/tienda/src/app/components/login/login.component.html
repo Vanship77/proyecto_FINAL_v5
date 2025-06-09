@@ -7,29 +7,19 @@
   Porfa, ingresa tu usuario solo con letras y una contraseña con mínimo 6 caracteres para entrar a tu cuenta.
 </p>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <input formControlName="username" placeholder="Usuario" (keypress)="soloLetras($event)">
-  <div *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid" style="color:red;">
-    <small>Usuario obligatorio y solo letras 🚫</small>
+  <input formControlName="email" type="email" placeholder="Correo">
+  <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" style="color:red;">
+    <small *ngIf="loginForm.get('email')?.errors?.['required']">Correo obligatorio 📧</small>
+    <small *ngIf="loginForm.get('email')?.errors?.['email']">Correo inválido 😵‍💫</small>
   </div>
 
   <input formControlName="password" type="password" placeholder="Contraseña">
   <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" style="color:red;">
-    <small>Contraseña obligatoria y mínimo 6 caracteres 🔒</small>
+    <small *ngIf="loginForm.get('password')?.errors?.['required']">Contraseña obligatoria 🔒</small>
+    <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Mínimo 6 caracteres 🔑</small>
   </div>
 
-  <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
-
-  <div style="margin-top: 10px; display: flex; gap: 20px;">
-    <a href="/soporte" style="text-decoration: none; color: #007bff;">Soporte</a>
-    <a href="/recuperar" style="text-decoration: none; color: #007bff;">¿Olvidaste tu contraseña?</a>
-  </div>
-
-  <div style="margin-top: 30px; text-align: center;">
-    <hr style="margin-bottom: 15px;"/>
-    <button type="button" (click)="loginWithGoogle()" style="background: #4285F4; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold;">
-      Iniciar sesión con Google
-    </button>
-  </div>
+  <button type="submit" [disabled]="loginForm.invalid">Iniciar sesión</button>
 </form>
 
 <app-footer></app-footer>

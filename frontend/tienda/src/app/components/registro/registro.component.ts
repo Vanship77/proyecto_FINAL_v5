@@ -21,18 +21,14 @@ export class RegistroComponent {
 
   constructor(private fb: FormBuilder, private userService: RegistroService) {
     this.registro = this.fb.group({
-      nombres: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
-      apellidos: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
-      cedula: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+      firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
+      lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      username: ['', [Validators.pattern(/^[a-zA-ZÀ-ÿ\s]*$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
-      birthDate: [''],
-      gender: [''],
-      location: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
-      foto: ['']
+      provider: ['local'],
+      role: ['user'],
+      photoUrl: ['']
     }, { validators: this.matchPasswords });
   }
 
@@ -74,11 +70,20 @@ export class RegistroComponent {
   enviar() {
     if (this.registro.valid) {
       const formData = new FormData();
-     Object.entries(this.registro.value).forEach(([key, value]) => {
-  if (key !== 'foto') {
-    formData.append(key, value?.toString() ?? '');
-  }
-});
+      Object.entries(this.registro.value).forEach(([key, value]) => {
+        if (key !== 'photoUrl') {
+          formData.append(key, value?.toString() ?? '');
+        }
+      });
+
+      if (this.imagenFile) {
+        formData.append('photoUrl', this.imagenFile);
+      }
+
+      this.userService.registrarUsuario(formData).subscribe(
+        res => alert('Registrado exitosamente 🎉'),
+        err => alert('Error al registrar 😓')
+      );
     } else {
       alert('Hay errores en el formulario ⚠️');
     }

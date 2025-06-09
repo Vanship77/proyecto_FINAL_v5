@@ -1,22 +1,16 @@
 <app-navbar></app-navbar>
 
 <form [formGroup]="registro" (ngSubmit)="enviar()">
-  <input formControlName="nombres" placeholder="Nombres" (keypress)="soloLetras($event)">
-  <div *ngIf="registro.get('nombres')?.touched && registro.get('nombres')?.invalid" style="color:red;">
-    <small *ngIf="registro.get('nombres')?.errors?.['required']">Los nombres son obligatorios 🌟</small>
-    <small *ngIf="registro.get('nombres')?.errors?.['pattern']">Solo letras, sin números 🚫</small>
+  <input formControlName="firstName" placeholder="Nombres" (keypress)="soloLetras($event)">
+  <div *ngIf="registro.get('firstName')?.touched && registro.get('firstName')?.invalid" style="color:red;">
+    <small *ngIf="registro.get('firstName')?.errors?.['required']">Los nombres son obligatorios 🌟</small>
+    <small *ngIf="registro.get('firstName')?.errors?.['pattern']">Solo letras, sin números 🚫</small>
   </div>
 
-  <input formControlName="apellidos" placeholder="Apellidos" (keypress)="soloLetras($event)">
-  <div *ngIf="registro.get('apellidos')?.touched && registro.get('apellidos')?.invalid" style="color:red;">
-    <small *ngIf="registro.get('apellidos')?.errors?.['required']">Los apellidos son obligatorios 🌟</small>
-    <small *ngIf="registro.get('apellidos')?.errors?.['pattern']">Solo letras, sin números 🚫</small>
-  </div>
-
-  <input formControlName="cedula" placeholder="Cédula" (keypress)="soloNumeros($event)">
-  <div *ngIf="registro.get('cedula')?.touched && registro.get('cedula')?.invalid" style="color:red;">
-    <small *ngIf="registro.get('cedula')?.errors?.['required']">Cédula obligatoria 📄</small>
-    <small *ngIf="registro.get('cedula')?.errors?.['pattern']">Solo números 🧮</small>
+  <input formControlName="lastName" placeholder="Apellidos" (keypress)="soloLetras($event)">
+  <div *ngIf="registro.get('lastName')?.touched && registro.get('lastName')?.invalid" style="color:red;">
+    <small *ngIf="registro.get('lastName')?.errors?.['required']">Los apellidos son obligatorios 🌟</small>
+    <small *ngIf="registro.get('lastName')?.errors?.['pattern']">Solo letras, sin números 🚫</small>
   </div>
 
   <input formControlName="email" type="email" placeholder="Correo">
@@ -24,14 +18,6 @@
     <small *ngIf="registro.get('email')?.errors?.['required']">Correo obligatorio 📧</small>
     <small *ngIf="registro.get('email')?.errors?.['email']">Correo inválido 😵‍💫</small>
   </div>
-
-  <input formControlName="phone" placeholder="Teléfono (10 dígitos)" (keypress)="soloNumeros($event)">
-  <div *ngIf="registro.get('phone')?.touched && registro.get('phone')?.invalid" style="color:red;">
-    <small *ngIf="registro.get('phone')?.errors?.['required']">Teléfono obligatorio 📞</small>
-    <small *ngIf="registro.get('phone')?.errors?.['pattern']">Debe tener 10 dígitos 📱</small>
-  </div>
-
-  <input formControlName="username" placeholder="Usuario " (keypress)="soloLetras($event)"><br>
 
   <input formControlName="password" type="password" placeholder="Contraseña">
   <div *ngIf="registro.get('password')?.touched && registro.get('password')?.invalid" style="color:red;">
@@ -44,21 +30,7 @@
     <small>Las contraseñas no coinciden ❌</small>
   </div>
 
-  <input formControlName="birthDate" type="date"><br>
-
-  <select formControlName="gender">
-    <option value="">Género (opcional)</option>
-    <option value="M">Masculino</option>
-    <option value="F">Femenino</option>
-    <option value="O">Otro</option>
-  </select><br>
-
-  <input formControlName="location" placeholder="Ciudad o país" (keypress)="soloLetras($event)">
-  <div *ngIf="registro.get('location')?.touched && registro.get('location')?.invalid" style="color:red;">
-    <small>La ubicación es obligatoria 📍</small>
-  </div>
-
-  <!-- Campo para foto -->
+  <!-- Subir foto -->
   <label>Subir foto:</label>
   <input type="file" (change)="onFileSelected($event)" accept="image/png, image/jpeg">
   <div *ngIf="imagenError" style="color:red;">{{ imagenError }}</div>
@@ -70,7 +42,7 @@
   <button type="submit" [disabled]="registro.invalid">Enviar</button>
 </form>
 
-<!-- Lista de usuarios -->
+<!-- Lista de usuarios (opcional) -->
 <div *ngIf="usuariosRegistrados.length > 0">
   <h3>Usuarios registrados:</h3>
   <pre>{{ usuariosRegistrados | json }}</pre>

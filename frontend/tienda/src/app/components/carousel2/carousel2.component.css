@@ -1,0 +1,122 @@
+/* Sin variables Sass ni interpolaciones */
+
+.gallery {
+  --d: 15s; /* duración total */
+  
+  display: grid;
+  width: 220px;
+  margin-left: auto;
+}
+
+.flex-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  max-width: 900px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.text-container {
+  flex: 1 1 300px;
+  max-width: 500px;
+  padding-right: 2rem;
+}
+
+/* Animación para cada imagen con delay diferente (manual) */
+.gallery > img {
+  grid-area: 1 / 1;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 10px solid #f2f2f2;
+  box-shadow: 0 0 4px #0007;
+  z-index: 2;
+  animation: slide 15s infinite, z-order 15s infinite steps(1);
+  transform-origin: center center;
+}
+
+/* Agregar delays y rotaciones únicas manualmente */
+.gallery > img:nth-child(1) {
+  animation-delay: 0s;
+  --r: -5deg;
+  transform: rotate(var(--r));
+}
+.gallery > img:nth-child(2) {
+  animation-delay: -3s;
+  --r: 10deg;
+  transform: rotate(var(--r));
+}
+.gallery > img:nth-child(3) {
+  animation-delay: -6s;
+  --r: -12deg;
+  transform: rotate(var(--r));
+}
+.gallery > img:nth-child(4) {
+  animation-delay: -9s;
+  --r: 7deg;
+  transform: rotate(var(--r));
+}
+.gallery > img:nth-child(5) {
+  animation-delay: -12s;
+  --r: 0deg;
+  transform: rotate(var(--r));
+  animation-name: slide, z-order-last;
+}
+
+/* Keyframes sin cálculos ni variables Sass */
+@keyframes slide {
+  0%, 20%, 100% {
+    transform: translateX(0%) rotate(var(--r));
+  }
+  10% {
+    transform: translateX(120%) rotate(var(--r));
+  }
+}
+
+@keyframes z-order {
+  0%, 20% {
+    z-index: 2;
+  }
+  30%, 100% {
+    z-index: 1;
+  }
+}
+
+@keyframes z-order-last {
+  0%, 20% {
+    z-index: 2;
+  }
+  50%, 100% {
+    z-index: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .flex-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .text-container {
+    padding-right: 0;
+    text-align: center;
+    max-width: 100%;
+  }
+  .gallery {
+    margin-left: 0;
+    width: 90vw;
+    max-width: 300px;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  background: #CDB380;
+  overflow: hidden;
+}

@@ -1,53 +1,140 @@
-/* Fondo oscuro tech con texto claro */
-section.container-fluid {
-  background: #212529;
-  color: #FAD9FA;
-  padding-top: 4rem !important;
-  padding-bottom: 4rem !important;
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --font-family-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-size-base: 16px;
+  --font-size-title: 32px;
+  --font-size-subtitle: 24px;
+  --color-text: #333;
+  --color-bg: #f4f4f4;
+  --color-card-bg: #fff;
+  --color-card-border: #ddd;
+  --card-border-radius: 8px;
+  --card-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  --transition-speed: 0.3s;
+  --padding-base: 20px;
+  --margin-base: 20px;
+  --max-width: 1200px;
 }
 
-/* Títulos con sombra y color vibrante */
-h2.fw-bold {
-  text-shadow: 1px 1px 3px rgba(255, 0, 255, 0.4);
-  color: #FAD9FA;
+body {
+  margin: 0;
+  font-family: var(--font-family-main);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
 }
 
-/* Texto estilizado para tech lovers */
-.lead, p {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  letter-spacing: 0.02em;
-  color: #000000;
+section {
+  padding: var(--padding-base);
+  max-width: var(--max-width);
+  margin: auto;
 }
 
-/* Botón con vibe oscura y elegante */
-.btn-primary {
-  background-color: #212529;
-  color: #FAD9FA;
-  border: none;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+section.bg-light {
+  background-color: #ecf0f1;
+  padding: 60px 20px;
+  text-align: center;
 }
 
-.btn-primary:hover {
-  background-color: #343a40;
+section.bg-light h2 {
+  font-size: var(--font-size-title);
+  margin-bottom: 20px;
+}
+
+section.bg-light p {
+  font-size: var(--font-size-subtitle);
+  margin-bottom: 30px;
+}
+
+section.bg-light a.btn {
+  background-color: var(--primary-color);
   color: #fff;
-  box-shadow: 0 0 10px #FAD9FA80;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: var(--card-border-radius);
+  transition: background-color var(--transition-speed);
 }
 
-/* Íconos tech con efecto animado */
-.bi {
-  transition: transform 0.3s ease, color 0.3s ease;
+section.bg-light a.btn:hover {
+  background-color: #2980b9;
 }
 
-.bi:hover {
-  transform: scale(1.2);
-  color: #ff00ff !important;
+.card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-box-shadow);
+  margin: var(--margin-base);
+  overflow: hidden;
+  transition: transform var(--transition-speed);
+  height: 100%;
 }
 
-/* Responsive touch */
-@media (max-width: 767px) {
-  section.container-fluid {
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;  /* para que la imagen conserve proporción sin deformar */
+}
+
+.card-body {
+  padding: var(--padding-base);
+}
+
+.card-body h3, .card-body h5 {
+  font-size: var(--font-size-subtitle);
+  margin-bottom: 10px;
+}
+
+.card-body p {
+  margin: 0;
+  font-size: var(--font-size-base);
+}
+
+/* Carrusel - 3 cartas visibles y scroll horizontal */
+.carousel .carousel-inner {
+  display: flex !important;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 1.5rem; /* un poco más de espacio */
+  padding: 1rem 0;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory; /* snap para que encaje */
+}
+
+.carousel .carousel-inner .card {
+  flex: 0 0 28%;          /* ancho fijo para cada carta */
+  max-width: 28%;
+  transform: scale(1);    /* escala normal para nitidez */
+  margin: 0;
+  transition: transform var(--transition-speed);
+  cursor: pointer;
+  scroll-snap-align: start;
+  height: auto;           /* altura proporcional */
+}
+
+.carousel .carousel-inner .card:hover {
+  transform: scale(1.05); /* un poco más grande al hover */
+}
+
+/* Responsividad */
+@media (max-width: 992px) {
+  .carousel .carousel-inner .card {
+    flex: 0 0 45%;
+    max-width: 45%;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel .carousel-inner .card {
+    flex: 0 0 80%;
+    max-width: 80%;
   }
 }

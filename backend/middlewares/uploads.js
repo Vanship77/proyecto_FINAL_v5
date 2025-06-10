@@ -1,29 +1,29 @@
 const multer = require('multer');
 const path = require('path');
-
+const uploadDir = path.join(__dirname, '..', 'uploads');
+// Configuración de almacenamiento
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, 'uploads/');
+  destination: function (req, file, cb) {
+    cb(null, uploadDir); // Carpeta local
   },
-  filename: function(req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+  filename: function (req, file, cb) {
     const ext = path.extname(file.originalname);
-    cb(null, file.fieldname + '-' + uniqueSuffix + ext);
+    const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1E9) + ext;
+    cb(null, uniqueName);
   }
 });
 
-const fileFilter = (req, file, cb) => {
-  const allowedTypes = /jpeg|jpg|png|gif/;
-  const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-  const mimetype = allowedTypes.test(file.mimetype);
-  
-  if (extname && mimetype) {
-    return cb(null, true);
-  } else {
-    cb(new Error('Solo imágenes con formato jpeg, jpg, png o gif'));
+const upload = multer({
+  storage,
+  fileFilter: function (req, file, cb) {
+    // Solo .jpg, .jpeg permitidos
+    const ext = path.extname(file.originalname).toLowerCase();
+    if (ext === '.jpg' || ext === '.jpeg') {
+      cb(null, true);
+    } else {
+      cb(new Error('Solo se permiten archivos .jpg o .jpeg'));
+    }
   }
-};
-
-const upload = multer({ storage, fileFilter });
+});
 
 module.exports = upload;

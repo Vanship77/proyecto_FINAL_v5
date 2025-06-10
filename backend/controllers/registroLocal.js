@@ -1,26 +1,59 @@
 const User = require('../models/userModel');
-const bcrypt = require('bcrypt');
 
-exports.registerLocal = async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
-
+// Registro de usuario con imagen
+const registerUser = async (req, res) => {
   try {
-    const existingUser = await User.findOne({ email, provider: 'local' });
-    if (existingUser) return res.status(400).json({ message: 'Ya existe el usuario' });
+    const { firstName, lastName, email, password, confirmPassword } = req.body;
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Validaciones básicas
+    if (!firstName || !lastName || !email || !password || !confirmPassword) {
+      return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+    }
 
-    const user = new User({
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: 'Las contraseñas no coinciden' });
+    }
+
+    // Verificar si ya existe un usuario con ese correo
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(409).json({ message: 'El correo ya está registrado' });
+    }
+
+    // Construir la URL pública de la imagen si fue subida
+    let photoUrl = null;
+    if (req.file) {
+      photoUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+    }
+
+    // Crear nuevo usuario
+    const newUser = new User({
       firstName,
       lastName,
       email,
-      password: hashedPassword,
-      provider: 'local'
+      password, // ⚠️ Recomiendo hashear con bcrypt en producción
+      photoUrl,
+      provider: 'local',
     });
 
-    await user.save();
-    res.status(201).json({ message: 'Usuario creado' });
+    await newUser.save();
+
+    return res.status(201).json({
+      message: 'Usuario registrado con éxito',
+      user: {
+        id: newUser._id,
+        firstName: newUser.firstName,
+        email: newUser.email,
+        photoUrl: newUser.photoUrl,
+      }
+    });
+
   } catch (error) {
-    res.status(500).json({ error: 'Error al registrar usuario' });
+    console.error('Error en registerUser:', error);
+    return res.status(500).json({ message: 'Error del servidor al registrar usuario' });
   }
+};
+
+module.exports = {
+  registerUser,
 };

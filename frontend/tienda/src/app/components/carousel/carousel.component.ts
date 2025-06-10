@@ -1,3 +1,4 @@
+// carousel.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,22 +12,22 @@ import { CommonModule } from '@angular/common';
 export class CarouselComponent {
   slides = [
     {
-      img: 'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=800&q=80',
-      alt: 'Futuro tecnológico',
-      title: 'Tecnología del Futuro',
-      text: 'Descubre las innovaciones que están transformando el mañana, hoy.'
+      img: 'https://i.pinimg.com/736x/14/ed/06/14ed06a74b2bb04d3dca0abd4d18535d.jpg',
+      alt: 'Imagen 1',
+      title: 'Creatividad Natural',
+      text: 'Explora la fusión entre arte y naturaleza en un solo vistazo.'
     },
     {
-      img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
-      alt: 'Conferencia tech',
-      title: 'Conferencias y Hackathons',
-      text: 'Conecta con mentes brillantes y crea soluciones disruptivas.'
+      img: 'https://i.pinimg.com/736x/71/81/6f/71816f1aba6175adad29f461f0b2a57e.jpg',
+      alt: 'Imagen 2',
+      title: 'Inspiración Urbana',
+      text: 'Estética urbana que conecta cultura, color y caos creativo.'
     },
     {
-      img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80',
-      alt: 'Innovación colaborativa',
-      title: 'Innovación Colaborativa',
-      text: 'Impulsa proyectos que fusionan creatividad y tecnología para cambiar el mundo.'
+      img: 'https://i.pinimg.com/736x/12/6b/8b/126b8ba03c3985120c795b541b6c9adf.jpg',
+      alt: 'Imagen 3',
+      title: 'Mirada Interior',
+      text: 'La introspección convertida en obra visual, con alma y mensaje.'
     }
   ];
 }

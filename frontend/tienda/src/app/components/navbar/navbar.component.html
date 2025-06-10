@@ -1,92 +1,60 @@
-<header class="topnav d-flex align-items-center px-3 py-2 mi-color text-white fixed-top"
-        [class.sidebar-open]="sidebarOpen">
-  <div class="d-flex align-items-center gap-2">
-    <button class="btn boton-de-menu" (click)="toggleSidebar()">
-      <i class="bi bi-list fs-3"></i>
-    </button>
-  </div>
+<nav class="navbar">
+  <button (click)="toggleSidebar()" aria-label="Toggle left sidebar">☰ Izquierda</button>
+  <div class="title">Andrakolis Navbar</div>
+  <button (click)="toggleSidebar2()" aria-label="Toggle right sidebar">☰ Derecha</button>
+</nav>
 
-  <a href="/home" class="brand-btn mx-auto">
-    <img src="logo_memento.png" alt="Logo Memento" style="height: 50px; max-width: 100%;">
-  </a>
-
-  <div class="d-flex align-items-center gap-2 ms-auto">
-    <button id="boton-menu2" class="btn btn-light btn-sm position-relative" (click)="toggleSidebar2()" aria-label="boton-menu2">
-      <i class="bi bi-person-circle fs-4"></i>
-    </button>
-  </div>
-</header>
-
-<div [class.sidebar-open]="sidebarOpen" class="sidebar bg-dark text-white pt-4">
-  <nav class="nav flex-column px-3" [class.collapsed]="!sidebarOpen">
+<aside class="sidebar left bg-dark text-white pt-4" [class.open]="sidebarOpen">
+  <button class="close-btn" (click)="sidebarOpen = false" aria-label="Cerrar sidebar izquierdo">×</button>
+  <nav class="nav flex-column px-3" [class.collapsed]="!sidebarOpen" aria-label="Sidebar navigation">
     <a class="nav-link d-flex align-items-center gap-2" href="/home">
-      <i class="bi bi-house"></i> <span>Inicio</span>
+      <i class="bi bi-house"></i><span>Inicio</span>
     </a>
     <a class="nav-link d-flex align-items-center gap-2" href="/home">
-      <i class="bi bi-people"></i> <span>Nosotros</span>
+      <i class="bi bi-people"></i><span>Nosotros</span>
     </a>
     <a class="nav-link d-flex align-items-center gap-2" href="/contact">
-      <i class="bi bi-envelope"></i> <span>Contacto</span>
+      <i class="bi bi-envelope"></i><span>Contacto</span>
     </a>
     <a class="nav-link d-flex align-items-center gap-2" href="/publicaciones">
-      <i class="bi bi-calendar3"></i> <span>Eventos Publicados</span>
+      <i class="bi bi-calendar3"></i><span>Eventos Publicados</span>
     </a>
     <a class="nav-link d-flex align-items-center gap-2" href="/eventos">
-      <i class="bi bi-info-circle"></i> <span>Saber más</span>
+      <i class="bi bi-info-circle"></i><span>Saber más</span>
     </a>
-
-    <ng-container *ngIf="isLoggedIn">
-      <a class="nav-link d-flex align-items-center gap-2 mt-3" href="/eventos">
-        <i class="bi bi-box"></i> <span>Modificar Eventos</span>
-      </a>
-    </ng-container>
+    <a *ngIf="isLoggedIn" class="nav-link d-flex align-items-center gap-2 mt-3" href="/eventos">
+      <i class="bi bi-box"></i><span>Modificar Eventos</span>
+    </a>
   </nav>
-
   <div class="sidebar-footer px-3 mt-4">
     <a href="/soporte" class="text-white d-block mb-2">Soporte</a>
   </div>
-</div>
+</aside>
 
-<div [class.sidebar2-open]="sidebar2Open" class="sidebar2 pt-4">
+<aside class="sidebar right" [class.open]="sidebar2Open" aria-label="User menu">
+  <button class="close-btn" (click)="sidebar2Open = false" aria-label="Cerrar sidebar derecho">×</button>
   <nav class="nav flex-column px-3">
-
     <ng-container *ngIf="!isLoggedIn; else loggedInButtons">
       <a class="nav-link d-flex align-items-center gap-2" href="/login">
-        <i class="bi bi-box-arrow-in-right"></i> <span>Iniciar sesión</span>
+        <i class="bi bi-box-arrow-in-right"></i><span>Iniciar sesión</span>
       </a>
       <a class="nav-link d-flex align-items-center gap-2" href="/registro">
-        <i class="bi bi-person-plus"></i> <span>Crear cuenta</span>
+        <i class="bi bi-person-plus"></i><span>Crear cuenta</span>
       </a>
-      <button class="btn btn-light btn-sm my-2" (click)="loginWithGithub()">
-        <i class="bi bi-github"></i> GitHub
+      <button class="btn btn-light btn-sm my-2 d-flex align-items-center gap-2" (click)="loginWithGithub()" aria-label="Login with GitHub">
+        <i class="bi bi-github fs-5"></i>Ingresar con GitHub
       </button>
-      <button class="btn btn-light btn-sm my-2" (click)="loginWithGoogle()">
-        <i class="bi bi-google"></i> Google
+      <button class="btn btn-light btn-sm my-2 d-flex align-items-center gap-2" (click)="loginWithGoogle()" aria-label="Login with Google">
+        <i class="bi bi-google fs-5"></i>Ingresar con Google
       </button>
     </ng-container>
-
-    <!-- Botón Simulación visible siempre -->
-    <button
-      class="btn btn-warning btn-sm my-3 w-100 d-flex align-items-center justify-content-center gap-2"
-      (click)="startSimulation()">
-      <i class="bi bi-play-circle"></i> Simulación
-    </button>
-
     <ng-template #loggedInButtons>
-      <div class="text-dark fw-bold mb-2 text-center" *ngIf="userData">
-        👋 Hola, {{ userData?.nombre || 'Usuario' }}
-      </div>
-      <button class="btn btn-light btn-sm my-2 w-100 d-flex align-items-center justify-content-center gap-2">
-        <i class="bi bi-person-lines-fill"></i> Perfil
+      <button class="btn btn-light btn-sm my-2 w-100 d-flex align-items-center justify-content-center gap-2" aria-label="Perfil">
+        <i class="bi bi-person-lines-fill"></i>Perfil
       </button>
-      <button class="btn btn-danger btn-sm my-2 w-100 d-flex align-items-center justify-content-center gap-2" (click)="logout()">
-        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+      <button class="btn btn-danger btn-sm my-2 w-100 d-flex align-items-center justify-content-center gap-2" (click)="logout()" aria-label="Cerrar sesión">
+        <i class="bi bi-box-arrow-right"></i>Cerrar sesión
       </button>
     </ng-template>
-
   </nav>
-</div>
-
-<main [class.shifted]="sidebarOpen" class="pt-5 px-3">
-  <ng-content></ng-content>
-</main>
+</aside>

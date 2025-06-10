@@ -5,7 +5,7 @@
   position: fixed;
   top: 0; left: 0; right: 0;
   height: 60px;
-  background-color: #212529; /* fondo negro */
+  background-color: #212529;
   color: #fff;
   display: flex;
   align-items: center;
@@ -17,15 +17,15 @@
 }
 
 .topnav .btn.boton-de-menu {
-  background-color:#212529; /* ← Cambia aquí el color de fondo del botón izquierdo */
-  color: white;              /* ← Cambia aquí el color del ícono/texto si deseas */
+  background-color:#212529;
+  color: white;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 .topnav .btn.boton-de-menu:hover {
-  background-color: #FAD9FA; /* ← Cambia aquí el color al pasar el cursor */
+  background-color: #FAD9FA;
 }
 
 .topnav input.form-control-sm {
@@ -85,22 +85,22 @@
 
 .topnav .btn.btn-light.position-relative i.fs-4 {
   font-size: 1.75rem;
-  color: #ffffff; /* ícono derecho */
+  color: #ffffff;
 }
 
 /* ===========================
    BOTÓN DEL MENÚ2
    =========================== */
 #boton-menu2 {
-  background-color: #212529; /* ← Cambia aquí el color de fondo del botón menú2 */
-  color: rgb(255, 255, 255);              /* ← Cambia aquí el color del ícono/texto del menú2 */
+  background-color: #212529;
+  color: rgb(255, 255, 255);
   border: none;
   font-size: 3rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 #boton-menu2:hover {
-  background-color: #FAD9FA; /* ← Cambia aquí el color al pasar el cursor en menú2 */
+  background-color: #FAD9FA;
 }
 
 /* ===========================
@@ -122,7 +122,6 @@
   backdrop-filter: blur(8px);
   z-index: 1030;
 }
-
 .sidebar.sidebar-open {
   left: 0;
 }
@@ -151,7 +150,6 @@
   right: 1rem;
   padding: 1rem;
   background: #212529;
-  /* border-radius removed */
   color: #FAD9FA;
   font-weight: 600;
   font-size: 0.9rem;

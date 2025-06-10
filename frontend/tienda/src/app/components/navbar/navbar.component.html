@@ -1,13 +1,9 @@
-<!-- ===========================
-     HEADER / TOPNAV
-     =========================== -->
 <header class="topnav d-flex align-items-center px-3 py-2 mi-color text-white fixed-top"
         [class.sidebar-open]="sidebarOpen">
   <div class="d-flex align-items-center gap-2">
     <button class="btn boton-de-menu" (click)="toggleSidebar()">
       <i class="bi bi-list fs-3"></i>
     </button>
-    
   </div>
 
   <a href="/home" class="brand-btn mx-auto">
@@ -21,9 +17,6 @@
   </div>
 </header>
 
-<!-- ===========================
-     SIDEBAR IZQUIERDO
-     =========================== -->
 <div [class.sidebar-open]="sidebarOpen" class="sidebar bg-dark text-white pt-4">
   <nav class="nav flex-column px-3" [class.collapsed]="!sidebarOpen">
     <a class="nav-link d-flex align-items-center gap-2" href="/home">
@@ -42,7 +35,6 @@
       <i class="bi bi-info-circle"></i> <span>Saber más</span>
     </a>
 
-    <!-- Botón solo visible si está logueado -->
     <ng-container *ngIf="isLoggedIn">
       <a class="nav-link d-flex align-items-center gap-2 mt-3" href="/eventos">
         <i class="bi bi-box"></i> <span>Modificar Eventos</span>
@@ -55,11 +47,9 @@
   </div>
 </div>
 
-<!-- ===========================
-     SIDEBAR DERECHO
-     =========================== -->
 <div [class.sidebar2-open]="sidebar2Open" class="sidebar2 pt-4">
   <nav class="nav flex-column px-3">
+
     <ng-container *ngIf="!isLoggedIn; else loggedInButtons">
       <a class="nav-link d-flex align-items-center gap-2" href="/login">
         <i class="bi bi-box-arrow-in-right"></i> <span>Iniciar sesión</span>
@@ -73,12 +63,19 @@
       <button class="btn btn-light btn-sm my-2" (click)="loginWithGoogle()">
         <i class="bi bi-google"></i> Google
       </button>
-      <button class="btn btn-warning btn-sm my-3 w-100 d-flex align-items-center justify-content-center gap-2" (click)="startSimulation()">
-        <i class="bi bi-play-circle"></i> Simulación
-      </button>
     </ng-container>
 
+    <!-- Botón Simulación visible siempre -->
+    <button
+      class="btn btn-warning btn-sm my-3 w-100 d-flex align-items-center justify-content-center gap-2"
+      (click)="startSimulation()">
+      <i class="bi bi-play-circle"></i> Simulación
+    </button>
+
     <ng-template #loggedInButtons>
+      <div class="text-dark fw-bold mb-2 text-center" *ngIf="userData">
+        👋 Hola, {{ userData?.nombre || 'Usuario' }}
+      </div>
       <button class="btn btn-light btn-sm my-2 w-100 d-flex align-items-center justify-content-center gap-2">
         <i class="bi bi-person-lines-fill"></i> Perfil
       </button>
@@ -86,12 +83,10 @@
         <i class="bi bi-box-arrow-right"></i> Cerrar sesión
       </button>
     </ng-template>
+
   </nav>
 </div>
 
-<!-- ===========================
-     MAIN
-     =========================== -->
 <main [class.shifted]="sidebarOpen" class="pt-5 px-3">
   <ng-content></ng-content>
 </main>

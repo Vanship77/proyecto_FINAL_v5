@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
+const path = require('path');
 
 dotenv.config();
 
@@ -53,7 +54,8 @@ initDB((err) => {
 
 // Rutas
 app.use('/', require('./routes'));
-
+//servir imagenes
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Start server
 app.listen(port, () => {
   console.log(`Running on port: ${port}`);

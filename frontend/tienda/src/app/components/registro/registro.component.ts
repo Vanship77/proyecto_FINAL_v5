@@ -77,10 +77,13 @@ export class RegistroComponent {
       });
 
       if (this.imagenFile) {
-        formData.append('photoUrl', this.imagenFile);
+        formData.append('photo', this.imagenFile); // ✅ NOMBRE CORRECTO PARA MULTER
       }
-
+      console.log(formData.values);
+      console.log(formData.entries);
+      console.log(formData.keys);
       this.userService.registrarUsuario(formData).subscribe(
+        
         res => alert('Registrado exitosamente 🎉'),
         err => alert('Error al registrar 😓')
       );

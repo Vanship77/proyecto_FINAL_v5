@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const authController = require('../controllers/registroLocal');
+const register=require('../controllers/registroLocal');
+const upload=require('../middlewares/uploads');
 
-router.post('/api/auth/register', authController.registerLocal);
+router.post('/register',upload.single('photo'),register.registerUser);
 
 module.exports = router;

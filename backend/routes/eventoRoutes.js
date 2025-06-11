@@ -10,7 +10,7 @@ const upload=require('../middlewares/uploads');
 router.get('/' ,eventoCtrl.getAllEventos);
 router.get('/:id',validators.validateEventoID, eventoCtrl.getEventoById);
 router.post('/',checkRole(role),isAuthenticated,upload.single('imagen'), eventoCtrl.createEvento);
-router.put('/:id',checkRole(role),isAuthenticated,upload.single('imagen'),validators.validateUpdateEventoBody, eventoCtrl.updateEventoById);
+router.put('/:id',checkRole(role),isAuthenticated,upload.single('imagen'), eventoCtrl.updateEventoById);
 router.delete('/:id',checkRole(role),isAuthenticated,validators.validateEventoID, eventoCtrl.deleteEventoById);
 
 module.exports = router;

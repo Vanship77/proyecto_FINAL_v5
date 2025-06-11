@@ -23,8 +23,9 @@ const validateCreateEventoBody = [
     .isLength({ min: 3, max: 100 }).withMessage('El título debe tener entre 3 y 100 caracteres'),
 
   body('descripcion')
+    .optional()
     .isString().withMessage('La descripción debe ser un texto')
-    .isLength({ min: 1, max: 100 }).withMessage('La descripción debe tener entre 10 y 100 caracteres'),
+    .isLength({ max: 100 }).withMessage('La descripción no puede tener más de 100 caracteres'),
 
   body('fecha')
     .isISO8601().withMessage('La fecha debe tener formato válido')
@@ -42,15 +43,18 @@ const validateCreateEventoBody = [
     .isNumeric().withMessage('El precio debe ser un número')
     .custom((value) => value >= 0).withMessage('El precio no puede ser negativo'),
 
-  body('imagen')
-    .matches(/^https?:\/\/.+\.(jpg|jpeg|png|webp|gif)$/).withMessage('Debe ser una URL válida de imagen'),
-
+  // Ya no se valida 'imagen' en el body porque será generado desde req.file
   (req, res, next) => {
+    if (!req.file) {
+      return res.status(400).json({ errors: [{ msg: 'La imagen es obligatoria y debe ser un archivo válido' }] });
+    }
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       console.error('Errores de validación:', errors.array());
       return res.status(400).json({ errorsValidacion: errors.array() });
     }
+
     console.log('Evento creado correctamente');
     console.log('datos del evento:', req.body);
     next();

@@ -4,6 +4,7 @@ const passport = require('passport');
 const authRoutes = require('./authRoutes');
 const sesionRoutes = require('./sessionRoutes');
 const registerRoutes=require('./registroLocalRoutes');
+const locaLogin=require('./localLoginRoutes');
 
 
 //documentacion
@@ -15,6 +16,8 @@ router.use('/api/eventos', eventoRutas);
 router.use('/api/sesion', sesionRoutes);
 //registrar local
 router.use('/api',registerRoutes);
+//login local
+router.use('/',locaLogin);
 //oauth rutas
 router.get('/login/github', passport.authenticate('github'), (req, res) => {});
 router.get('/login/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -22,10 +25,17 @@ router.get('/login/google', passport.authenticate('google', { scope: ['profile',
 router.use('/', authRoutes);
 
 router.get('/logout', function(req, res, next) {
-  req.logout(function(err) {
-    if (err) { return next(err) }
-    res.redirect('/');
+  req.logout(err => {
+    if (err) {
+      console.error('Error cerrando sesión:', err);
+      return res.status(500).send('Error cerrando sesión');
+    }
+    req.session.destroy(() => {
+      res.clearCookie('connect.sid');
+      res.redirect('/');
+    });
   });
 });
+
 
 module.exports = router;//just for changes

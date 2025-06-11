@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { getSessionInfo } = require('../controllers/sessionController');
+const { getSessionInfo, getSessionInfoAndrokolis } = require('../controllers/sessionController');
 
-router.get('/api/sesion', getSessionInfo);
+router.get('/api/sesion', getSessionInfoAndrokolis);
 
 module.exports = router;

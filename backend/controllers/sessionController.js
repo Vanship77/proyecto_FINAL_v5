@@ -12,7 +12,14 @@ const getSessionInfo = (req, res) => {
 };
 
 
+const getSessionInfoAndrokolis = (req, res) => {
+  if (req.user) {
+    res.json({ loggedIn: true, user: req.user });
+  } else {
+    res.json({ loggedIn: false });
+  }
+};
 
 module.exports = {
-  getSessionInfo
+  getSessionInfo,getSessionInfoAndrokolis,
 };

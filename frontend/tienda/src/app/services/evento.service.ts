@@ -9,7 +9,7 @@ export class EventoService {
   public url: string;
 
   constructor(private _http: HttpClient) {
-    this.url = Global.url; // base URL de la API, ej: http://localhost:3000/api/eventos
+    this.url = Global.url; // ej: http://localhost:3000/api/eventos
   }
 
   getEventos(): Observable<Evento[]> {
@@ -20,15 +20,15 @@ export class EventoService {
     return this._http.get<Evento>(`${this.url}/${id}`);
   }
 
-  addEvento(evento: Evento): Observable<Evento> {
-    return this._http.post<Evento>(this.url, evento,{withCredentials: true});
+  addEvento(formData: FormData): Observable<Evento> {
+    return this._http.post<Evento>(this.url, formData, { withCredentials: true });
   }
 
-  updateEvento(id: string, evento: Evento): Observable<Evento> {
-    return this._http.put<Evento>(`${this.url}/${id}`, evento,{withCredentials: true});
+  updateEvento(id: string, formData: FormData): Observable<Evento> {
+    return this._http.put<Evento>(`${this.url}/${id}`, formData, { withCredentials: true });
   }
 
   deleteEvento(id: string): Observable<any> {
-    return this._http.delete(`${this.url}/${id}`,{withCredentials: true});
+    return this._http.delete(`${this.url}/${id}`, { withCredentials: true });
   }
 }

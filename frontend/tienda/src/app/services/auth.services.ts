@@ -14,7 +14,7 @@ export class AuthService {
   }
 
   checkSession() {
-    this.http.get<{ loggedIn: boolean }>('http://localhost:8080/api/session/status', { withCredentials: true })
+    this.http.get<{ loggedIn: boolean }>('http://localhost:8080/api/sesion/api/sesion', { withCredentials: true })
       .subscribe({
         next: res => this.loggedIn.next(res.loggedIn),
         error: () => this.loggedIn.next(false)

@@ -2,19 +2,22 @@ const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET || 'secreto_super_seguro';
 
 const verifyToken = (req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1]; // "Bearer <token>"
+  const authHeader = req.headers.authorization;
 
-  if (!token) {
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ message: 'Token requerido' });
   }
 
+  const token = authHeader.split(' ')[1];
+
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
-    req.user = decoded; // userId, email, role
+    req.user = decoded; // Asigna el payload del token a req.user
     next();
-  } catch (err) {
-    return res.status(401).json({ message: 'Token inválido o expirado' });
+  } catch (error) {
+    return res.status(401).json({ message: 'Token inválido' });
   }
 };
+
 
 module.exports = { verifyToken };

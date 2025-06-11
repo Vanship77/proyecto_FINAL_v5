@@ -15,8 +15,9 @@ import { FooterComponent } from '../footer/footer.component';
 })
 export class EventoListComponent implements OnInit {
   eventos: Evento[] = [];
-  eventoSeleccionado?: Evento; 
+  eventoSeleccionado?: Evento;
   modoEdicion = false;
+  archivoSeleccionado?: File;
 
   constructor(private eventoService: EventoService) {}
 
@@ -56,25 +57,13 @@ export class EventoListComponent implements OnInit {
       precio: 0,
       imagen: ''
     };
+    this.archivoSeleccionado = undefined;
     this.modoEdicion = true;
-  }
-
-  guardar(evento: Evento) {
-    if (evento._id) {
-      this.eventoService.updateEvento(evento._id, evento).subscribe(() => {
-        this.cargarEventos();
-        this.cancelar();
-      });
-    } else {
-      this.eventoService.addEvento(evento).subscribe(() => {
-        this.cargarEventos();
-        this.cancelar();
-      });
-    }
   }
 
   cancelar() {
     this.eventoSeleccionado = undefined;
+    this.archivoSeleccionado = undefined;
     this.modoEdicion = false;
   }
 
@@ -89,6 +78,9 @@ export class EventoListComponent implements OnInit {
       return;
     }
 
+    this.archivoSeleccionado = file;
+
+    // Para previsualizar:
     const reader = new FileReader();
     reader.onload = () => {
       if (this.eventoSeleccionado) {
@@ -96,5 +88,29 @@ export class EventoListComponent implements OnInit {
       }
     };
     reader.readAsDataURL(file);
+  }
+
+  guardar(evento: Evento) {
+    const formData = new FormData();
+    formData.append('titulo', evento.titulo);
+    formData.append('descripcion', evento.descripcion);
+    formData.append('fecha', evento.fecha);
+    formData.append('lugar', evento.lugar);
+    formData.append('precio', evento.precio.toString());
+    if (this.archivoSeleccionado) {
+      formData.append('imagen', this.archivoSeleccionado);
+    }
+
+    if (evento._id) {
+      this.eventoService.updateEvento(evento._id, formData).subscribe(() => {
+        this.cargarEventos();
+        this.cancelar();
+      });
+    } else {
+      this.eventoService.addEvento(formData).subscribe(() => {
+        this.cargarEventos();
+        this.cancelar();
+      });
+    }
   }
 }

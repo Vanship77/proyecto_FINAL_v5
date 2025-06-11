@@ -20,15 +20,44 @@ const getEventoById = async (req, res) => {
     }
 }
 const createEvento = async (req, res) => {
-    const evento = new eventoModel(req.body);
-    try {
-        const savedEvento = await evento.save();
-        res.status(201).json(savedEvento);
-    } catch (error) {
-        console.error('Error al crear el evento controlador:', error);
-        res.status(400).json({ messageCONTROLADOR: error.message });
+  try {
+    const { titulo, descripcion, fecha, lugar, precio } = req.body;
+
+    // Validar campos requeridos
+    if (!titulo || !fecha || !lugar || !precio) {
+      return res.status(400).json({ message: 'Faltan campos obligatorios' });
     }
-}
+
+    // Verificar imagen subida
+    if (!req.file) {
+      return res.status(400).json({ message: 'La imagen es obligatoria' });
+    }
+
+    // Construir URL pública de la imagen
+    const imagenUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+
+    // Crear el evento
+    const nuevoEvento = new eventoModel({
+      titulo,
+      descripcion,
+      fecha,
+      lugar,
+      precio,
+      imagen: imagenUrl
+    });
+
+    const eventoGuardado = await nuevoEvento.save();
+
+    res.status(201).json({
+      message: 'Evento creado con éxito',
+      evento: eventoGuardado
+    });
+
+  } catch (error) {
+    console.error('Error al crear el evento:', error);
+    res.status(500).json({ message: 'Error del servidor al crear evento' });
+  }
+};
 const updateEventoById = async (req, res) => {
     try {
         const updatedEvento = await eventoModel.findByIdAndUpdate(

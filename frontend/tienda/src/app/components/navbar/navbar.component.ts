@@ -36,9 +36,9 @@ export class NavbarComponent {
     }
   }
   loginWithGoogle() {
-    window.open('http://localhost:8080/login/google');
+    window.open('http://localhost:8080/login/google','_self');
   }
   loginWithGithub() {
-    window.open('http://localhost:8080/login/github');
+    window.open('http://localhost:8080/login/github','_self');
   }
 }

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
+import { LoginService } from '../../services/login.service'; // Asegúrate de ajustar la ruta
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +15,13 @@ import { FooterComponent } from '../footer/footer.component';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  errorMessage: string | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -24,12 +31,23 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-      console.log('Login exitoso con:', email, password);
-      // Aquí mandar al backend o guardar sesión
+      this.loginService.login(email, password).subscribe({
+        next: (res) => {
+          console.log('Login exitoso:', res);
+          // Guarda el token en localStorage
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          console.error('Error al iniciar sesión:', err);
+          alert(err.error.message || 'Error desconocido');
+        }
+      });
     }
   }
 
   loginWithGoogle() {
     console.log('Login con Google iniciado 🔥');
+    // Redirigir a tu endpoint de Google OAuth si lo tienes
   }
 }

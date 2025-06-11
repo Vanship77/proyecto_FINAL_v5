@@ -4,6 +4,7 @@ const passport = require('passport');
 const authRoutes = require('./authRoutes');
 const sesionRoutes = require('./sessionRoutes');
 const registerRoutes=require('./registroLocalRoutes');
+const locaLogin=require('./localLoginRoutes');
 
 
 //documentacion
@@ -15,6 +16,8 @@ router.use('/api/eventos', eventoRutas);
 router.use('/api/sesion', sesionRoutes);
 //registrar local
 router.use('/api',registerRoutes);
+//login local
+router.use('/',locaLogin);
 //oauth rutas
 router.get('/login/github', passport.authenticate('github'), (req, res) => {});
 router.get('/login/google', passport.authenticate('google', { scope: ['profile', 'email'] }));

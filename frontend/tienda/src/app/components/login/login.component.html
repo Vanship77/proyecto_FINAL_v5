@@ -1,6 +1,6 @@
-
 <app-navbar></app-navbar>
-<h1 style="text-align:center; font-size: 3rem; margin: 30px 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #007BFF;">
+<h1
+  style="text-align:center; font-size: 3rem; margin: 30px 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #007BFF;">
   MEMENTO
 </h1>
 <p style="text-align:center; font-size: 1.1rem; color: #555; max-width: 400px; margin: 0 auto 30px auto;">
@@ -20,6 +20,9 @@
   </div>
 
   <button type="submit" [disabled]="loginForm.invalid">Iniciar sesión</button>
+  <div *ngIf="errorMessage" style="color: red; margin-top: 10px;">
+    {{ errorMessage }}
+  </div>
 </form>
 
 <app-footer></app-footer>

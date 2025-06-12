@@ -54,7 +54,7 @@ export class ContactComponent {
       });
 
     } else {
-      alert('Por favor completa todos los campos correctamente 🛑');
+      alert('Por favor completar todos los campos correctamente 🛑');
     }
   }
 }

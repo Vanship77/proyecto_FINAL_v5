@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: center;
   color: white;
-  text-shadow: 1px 1px 5px black;
+  text-shadow: 1px 1px 5px rgb(0, 0, 0);
 }
 
 /* Capa oscura para mejorar legibilidad del texto */

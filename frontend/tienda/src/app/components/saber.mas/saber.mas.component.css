@@ -1,0 +1,230 @@
+.saber-mas-hero {
+  height: 60vh;
+  background-color: #222;
+  background-image: url('https://www.iniseg.es/blog/seguridad/wp-content/uploads/2018/06/Blog-Aucal-41-820x410.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 1px 1px 5px black;
+}
+
+/* Capa oscura para mejorar legibilidad del texto */
+.saber-mas-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(34, 34, 34, 0.7); /* negro semi-transparente */
+  z-index: 0;
+}
+
+.saber-mas-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Benefit boxes */
+.benefit-box {
+  padding: 1rem;
+  border: 1px solid #555; /* gris plomo oscuro */
+  border-radius: 12px;
+  background-color: #2e2e2e; /* gris plomo */
+  color: #d1c4e9; /* morado claro para texto */
+}
+
+.benefit-box .icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #9575cd; /* morado medio */
+}
+
+/* Testimonio Card (Uiverse.io style) */
+.card {
+  width: 250px;
+  min-height: 120px;
+  padding: 1rem;
+  background: rgba(50, 50, 70, 0.85); /* morado oscuro translúcido */
+  border-radius: 12px;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-bottom: 3px solid rgba(149, 117, 205, 0.4); /* borde morado */
+  border-left: 2px rgba(149, 117, 205, 0.3) outset;
+  box-shadow: 0 8px 30px rgba(40, 20, 60, 0.5);
+  transform: skewX(10deg);
+  transition: 0.4s ease;
+  overflow: hidden;
+  color: #d1c4e9; /* morado claro */
+}
+
+.card:hover {
+  transform: skew(0deg);
+}
+
+.card h1 {
+  text-align: center;
+  margin: 1.3rem 0;
+  font-size: 1.2rem;
+  color: #b39ddb; /* morado vibrante */
+  text-shadow: 0 0 10px rgba(179, 157, 219, 0.6);
+}
+
+.card p {
+  font-size: 0.95rem;
+  text-align: center;
+  color: #c5cae9; /* morado muy claro */
+}
+
+
+.align {
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-self: flex-start;
+}
+
+.red, .yellow, .green {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.red {
+  background-color: #ab47bc; /* morado intenso en vez de rojo */
+}
+
+.yellow {
+  background-color: #7e57c2; /* morado medio en vez de amarillo */
+}
+
+.green {
+  background-color: #5e35b1; /* morado oscuro en vez de verde */
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 190px;
+  height: 254px;
+  perspective: 1000px;
+  font-family: sans-serif;
+}
+
+.title {
+  font-size: 1.2em;
+  font-weight: 900;
+  text-align: center;
+  margin: 0;
+  color: #d1c4e9;
+  text-shadow: 1px 1px 3px #000000cc;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.5);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 1px solid #6a1b9a; /* morado oscuro */
+  border-radius: 1rem;
+}
+
+.flip-card-front {
+  background: linear-gradient(120deg, #311b92 60%, #512da8 88%, #673ab7 40%, #7e57c2 48%);
+  color: #d1c4e9;
+}
+
+.flip-card-back {
+  background: linear-gradient(120deg, #7e57c2 30%, #9575cd 88%, #b39ddb 40%, #d1c4e9 78%);
+  color: white;
+  transform: rotateY(180deg);
+}
+/* Responsive styles */
+
+@media (max-width: 768px) {
+  .saber-mas-hero {
+    height: auto;
+    padding: 1.5rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .benefit-box {
+    margin-bottom: 1rem;
+  }
+
+  .card {
+    width: 90vw;
+    min-height: auto;
+    padding: 1.2rem;
+    transform: none;
+    margin: 1rem auto;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .flip-card {
+    width: 90vw;
+    height: auto;
+    margin: 1rem auto;
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  .flip-card-inner {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .saber-mas-hero {
+    padding: 1rem;
+  }
+
+  .card h1 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+  }
+
+  .benefit-box {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}

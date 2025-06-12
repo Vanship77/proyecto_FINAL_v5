@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
+const mongoose = require('mongoose');
+const mensajeRoute = require('./routes/mensajes');
 
 dotenv.config();
 
@@ -64,8 +66,12 @@ app.get('/', (req, res) => {
 
 // Rutas
 app.use('/', require('./routes'));
+app.use('/api', require('./routes/mensajes'));  
 //servir imagenes
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
+
 // Start server
 app.listen(port, () => {
   console.log(`Running on port: ${port}`);

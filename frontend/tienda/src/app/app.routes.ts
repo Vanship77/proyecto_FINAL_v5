@@ -11,6 +11,7 @@ import { PublicacionesComponent } from './components/publicaciones/publicaciones
 import { RegistroComponent } from './components/registro/registro.component';
 
 import { LoginComponent } from './components/login/login.component';
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,6 +25,7 @@ export const routes: Routes = [
   {path : 'publicaciones', component: PublicacionesComponent },
  { path: 'registro', component: RegistroComponent },
  { path: 'login', component: LoginComponent },
+ { path: 'nosotros', component: NosotrosComponent },
   // 👉 Nuevas rutas de eventos
   { path: 'eventos', component: EventoListComponent },
   { path: 'eventos/crear', component: EventoFormComponent },

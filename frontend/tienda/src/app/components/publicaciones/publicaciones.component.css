@@ -3,7 +3,7 @@
   --text: #222;
   --card-bg: rgba(0, 0, 0, 0.6);
   --card-overlay: rgba(0, 0, 0, 0.4);
-  --highlight: #512da8;
+  --highlight: #ffffff;
   --shadow: rgba(0, 0, 0, 0.3);
 }
 
@@ -25,7 +25,7 @@ body.dark-mode {
 
 /* === HERO === */
 .hero-section {
-  background: #311b92;
+  background: #f8f8fa;
   color: rgb(6, 4, 4);
   text-align: center;
   padding: 60px 20px;
@@ -77,12 +77,12 @@ body.dark-mode {
   position: relative;
   background-size: cover;
   background-position: center;
-  border-radius: 16px;
+  border-radius: 15px;
   min-height: 650px;
   color: white;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: transform 0.8s;
 }
 
 .carta::before {

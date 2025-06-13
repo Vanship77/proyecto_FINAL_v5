@@ -2,114 +2,79 @@
 <app-carousel></app-carousel>
 
 <!-- Sección Bienvenida -->
-<section class="container-fluid py-5 bg-light">
-  <div class="row align-items-center">
-    <div class="col-md-6 text-start px-5">
-      <h2 class="fw-bold mb-4 text-primary">Bienvenida Mordalor Events: Vive la experiencia</h2>
-      <p class="lead">Desde ferias tecnológicas, talleres creativos hasta cine alternativo. Aquí, cada evento es una historia lista para contarse.</p>
-      <p class="text-muted">Conéctate, descubre y participa en experiencias únicas organizadas para todos los gustos. ¡Explora, comparte y vive!</p>
+<section class="container-fluid py-5 bg-white">
+  <div class="row align-items-center text-black">
+    <div class="col-md-6 px-5">
+      <h1 class="elegant-title">MEMENTO QUITO</h1>
+      <h2 class="elegant-subtitle mb-4">EVENTOS QUE MARCAN TU HISTORIA</h2>
+      <p class="lead">Descubre la esencia vibrante de Quito a través de ferias, arte urbano, cine independiente y más.</p>
+      <p>Nos encargamos de conectar experiencias memorables con las personas que las viven.</p>
       <div class="d-flex flex-wrap gap-3 mt-4">
-        <!-- From Uiverse.io by adamgiebl -->
-        <a routerLink="/publicaciones">
-          <button class="btn btn-primary shadow-sm position-relative">
-        Ver Eventos
-        <span></span>
-          </button>
+        <a routerLink="/publicaciones" class="text-decoration-none">
+          <button class="btn btn-outline-secondary">VER EVENTOS</button>
         </a>
-        <a routerLink="/nosotros">
-          <button class="btn btn-outline-secondary shadow-sm position-relative">
-        Sobre Nosotros
-        <span></span>
-          </button>
-        </a>
-        <a routerLink="/contact">
-          <button class="btn btn-outline-info shadow-sm position-relative">
-        Contáctanos
-        <span></span>
-          </button>
+        <a routerLink="/nosotros" class="text-decoration-none">
+          <button class="btn btn-outline-dark">¿QUIÉNES SOMOS?</button>
         </a>
       </div>
     </div>
     <div class="col-md-6 text-center">
-      <div class="d-flex justify-content-around flex-wrap gap-4">
-        <div>
-          <i class="bi bi-calendar-event fs-1 text-info"></i>
-          <p>Eventos únicos</p>
+      <div class="d-flex justify-content-center flex-wrap gap-4">
+        <div class="hover-card">
+          <i class="bi bi-brush fs-1 text-secondary"></i>
+          <p class="mt-2">Festivales culturales</p>
         </div>
-        <div>
-          <i class="bi bi-people fs-1 text-success"></i>
-          <p>Comunidad activa</p>
+        <div class="hover-card">
+          <i class="bi bi-camera-reels fs-1 text-secondary"></i>
+          <p class="mt-2">Proyecciones de cine</p>
         </div>
-        <div>
-          <i class="bi bi-cast fs-1 text-primary"></i>
-          <p>Streaming en vivo</p>
+        <div class="hover-card">
+          <i class="bi bi-vinyl fs-1 text-secondary"></i>
+          <p class="mt-2">Música en vivo</p>
         </div>
-        <div>
-          <i class="bi bi-ticket-perforated fs-1 text-warning"></i>
-          <p>Entradas fáciles</p>
+        <div class="hover-card">
+          <i class="bi bi-shop-window fs-1 text-secondary"></i>
+          <p class="mt-2">Ferias artesanales</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Categorías -->
+<app-carousel3></app-carousel3>
+
+<!-- Servicios de Eventos -->
+<section class="container-fluid py-5 bg-white">
+  <div class="container">
+    <h3 class="elegant-title text-center">NUESTROS SERVICIOS</h3>
+    <div class="row text-center mt-4">
+      <div class="col-md-4 hover-card">
+        <div class="quote-icon text-secondary">🎪</div>
+        <p>Producción de eventos urbanos y festivales de gran impacto en Quito.</p>
+        <small>Planificación completa y logística integral.</small>
+      </div>
+      <div class="col-md-4 hover-card">
+        <div class="quote-icon text-secondary">🎥</div>
+        <p>Gestión de espacios para cine alternativo y funciones al aire libre.</p>
+        <small>Con alianzas locales y proyección técnica.</small>
+      </div>
+      <div class="col-md-4 hover-card">
+        <div class="quote-icon text-secondary">📢</div>
+        <p>Campañas de difusión para visibilizar eventos culturales en la ciudad.</p>
+        <small>Desde redes sociales hasta carteles callejeros.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
 <app-carousel2></app-carousel2>
 
-<!-- Eventos Destacados -->
-<section class="container py-5">
-  <h3 class="text-center text-primary mb-4">Eventos Destacados</h3>
-
-  <div class="carousel-container position-relative">
-    <div class="carousel-wrapper d-flex overflow-auto" #carouselWrapper>
-      <div class="card shadow-sm m-2 flex-shrink-0" *ngFor="let evento of eventos" style="width: 30%;">
-        <img *ngIf="evento.imagen" [src]="evento.imagen" class="card-img-top" alt="{{evento.titulo}}">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">{{ evento.titulo }}</h5>
-          <p class="card-text text-truncate">{{ evento.descripcion }}</p>
-          <p class="card-text"><small class="text-muted">{{ evento.fecha }} - {{ evento.lugar }}</small></p>
-          <div class="mt-auto d-flex justify-content-between align-items-center">
-            <span class="badge bg-info text-dark fs-6">${{ evento.precio }}</span>
-            <a [routerLink]="['/evento', evento._id]" class="btn btn-primary btn-sm">Detalles</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <button class="btn btn-primary position-absolute top-50 start-0 translate-middle-y" style="z-index:10;" (click)="scroll(-1)">‹</button>
-    <button class="btn btn-primary position-absolute top-50 end-0 translate-middle-y" style="z-index:10;" (click)="scroll(1)">›</button>
-  </div>
-
-  <div class="text-center mt-4">
-    <a routerLink="/publicaciones" class="btn btn-outline-primary">Explorar todos los eventos</a>
-  </div>
-</section>
-
-<!-- Testimonios -->
-<section class="container-fluid py-5 bg-dark text-white">
-  <div class="container">
-    <h3 class="text-center mb-4">Lo que dicen nuestros asistentes</h3>
-    <div class="row text-center">
-      <div class="col-md-4">
-        <p>"¡Una experiencia brutal! Repetiría mil veces más."</p>
-        <small>- Camila R.</small>
-      </div>
-      <div class="col-md-4">
-        <p>"Organización top, contenido de calidad y buen ambiente."</p>
-        <small>- Diego P.</small>
-      </div>
-      <div class="col-md-4">
-        <p>"Eventos diferentes con un enfoque fresco. ¡Me encantó!"</p>
-        <small>- Andrea Q.</small>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- CTA final -->
-<section class="container text-center py-5">
-  <h4 class="mb-3">¿Tienes preguntas o quieres colaborar?</h4>
-  <a routerLink="/contact" class="btn btn-lg btn-info text-white shadow-sm">Hablemos</a>
+<section class="container text-center py-5 bg-white">
+  <h4 class="elegant-subtitle mb-4">¿PREPARADO PARA TU PRÓXIMA AVENTURA EN QUITO?</h4>
+  <a routerLink="/contact">
+    <button class="btn btn-outline-secondary">CONTÁCTANOS</button>
+  </a>
 </section>
 
 <app-footer></app-footer>

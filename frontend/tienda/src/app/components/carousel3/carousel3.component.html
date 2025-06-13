@@ -1,0 +1,43 @@
+<section class="container py-5" style="background-color: #F5F5F5; border-radius: 16px;">
+  <h3 class="text-center mb-4" style="font-family: 'Playfair Display', serif; font-weight: 700; color: #3D1A5F;">Eventos Destacados</h3>
+
+  <div class="carousel-container position-relative">
+    <div class="carousel-wrapper d-flex overflow-auto px-2" #carouselWrapper style="scroll-behavior: smooth;">
+      <div 
+        class="card mx-2 flex-shrink-0 animate__animated animate__fadeInUp" 
+        *ngFor="let evento of eventos; let i = index" 
+        style="width: 300px; min-width: 300px; border: none;"
+        [style.animation-delay]="i * 0.1 + 's'">
+        
+        <img *ngIf="evento.imagen" [src]="evento.imagen" class="card-img-top" [alt]="evento.titulo" style="height: 200px; object-fit: cover;">
+        
+        <div class="card-body d-flex flex-column" style="background-color: white;">
+          <h5 class="card-title text-truncate" style="font-family: 'Playfair Display', serif; font-weight: 500; color: #2C2C2C;">{{ evento.titulo }}</h5>
+          <p class="card-text text-truncate" style="font-family: 'Montserrat', sans-serif; color: #5A5A5A;">{{ evento.descripcion }}</p>
+          <p class="card-text"><small class="text-muted" style="font-family: 'Montserrat', sans-serif; color: #5A5A5A;">{{ evento.fecha }} - {{ evento.lugar }}</small></p>
+          <div class="mt-auto d-flex justify-content-between align-items-center">
+            <span class="badge fs-6" style="background-color: #2D8CCC; color: white; font-family: 'Montserrat', sans-serif; font-weight: 600;">${{ evento.precio }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button 
+      class="btn btn-carousel-nav start-0" 
+      style="z-index: 10;" 
+      (click)="scroll(-1)">
+      ‹
+    </button>
+
+    <button 
+      class="btn btn-carousel-nav end-0" 
+      style="z-index: 10;" 
+      (click)="scroll(1)">
+      ›
+    </button>
+  </div>
+
+  <div class="text-center mt-4">
+    <a routerLink="/publicaciones" class="btn btn-explore">Explorar todos los eventos</a>
+  </div>
+</section>

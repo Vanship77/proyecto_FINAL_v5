@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../../services/evento.service';
 import { Evento } from '../../models/evento';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { FooterComponent } from '../footer/footer.component';
+
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-publicaciones',
   standalone: true,
-  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, RouterModule],
   templateUrl: './publicaciones.component.html',
   styleUrls: ['./publicaciones.component.css']
 })

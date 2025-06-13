@@ -1,0 +1,247 @@
+
+/* Fuentes y animaciones */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;800&family=Montserrat:wght@400;600&display=swap');
+
+
+/* Fuentes y colores directos */
+.publicaciones-container {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  background-color: #000000; /* Fondo blanco como base */
+  color: #ffffff; /* Color de texto principal */
+  min-height: 100vh;
+  padding: 10rem;
+}
+
+/* Encabezado elegante */
+.memento-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.memento-header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.5rem;
+  color: #5A2D8C; /* Púrpura principal */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+}
+
+.memento-header h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #5A2D8C; /* Púrpura principal */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.memento-header:hover h1::after {
+  width: 120px;
+}
+
+.memento-header p {
+  font-size: 1.2rem;
+  color: #666; /* Color de texto secundario */
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Sección de título mejorada */
+.titulo-section {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.titulo-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.8rem;
+  color: #5A2D8C; /* Púrpura principal */
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.divider {
+  height: 4px;
+  width: 150px;
+  background: #5A2D8C; /* Púrpura principal */
+  margin: 0 auto;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(93, 45, 140, 0.2); /* Sombra púrpura */
+}
+
+/* Contenedor de la app con mejoras */
+.app-container {
+  background-color: #000000; /* Fondo blanco */
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 4rem auto;
+  max-width: 900px;
+  box-shadow: 0 10px 30px rgba(93, 45, 140, 0.2); /* Sombra púrpura */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(90, 45, 140, 0.1); /* Borde sutil púrpura */
+}
+
+.app-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(93, 45, 140, 0.3); /* Sombra púrpura más intensa */
+}
+
+.app-placeholder {
+  background-color: #fff; /* Fondo blanco */
+  border: 2px dashed #5A2D8C; /* Púrpura principal */
+  color: #5A2D8C; /* Púrpura principal */
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-placeholder:hover {
+  border-color: #3D1A5F; /* Púrpura oscuro hover */
+  color: #3D1A5F; /* Púrpura oscuro hover */
+}
+
+/* Botones mejorados con estilo elegante */
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.btn-contactar {
+  background: #5A2D8C; /* Púrpura principal */
+  color: #fff; /* Texto blanco */
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(93, 45, 140, 0.3); /* Sombra púrpura */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-contactar:hover {
+  background: #3D1A5F; /* Púrpura oscuro hover */
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(93, 45, 140, 0.4); /* Sombra púrpura más intensa */
+}
+
+.btn-contactar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-contactar:hover::after {
+  transform: translateX(100%);
+}
+
+.btn-sugerir {
+  background-color: transparent;
+  color: #5A2D8C; /* Púrpura principal */
+  border: 2px solid #5A2D8C;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-sugerir:hover {
+  background-color: rgba(90, 45, 140, 0.1); /* Púrpura muy suave */
+  color: #3D1A5F; /* Púrpura oscuro hover */
+  border-color: #3D1A5F;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(93, 45, 140, 0.2); /* Sombra púrpura */
+}
+
+.btn-sugerir::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(90, 45, 140, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-sugerir:hover::before {
+  transform: translateX(100%);
+}
+
+/* Responsive mejorado */
+@media (max-width: 768px) {
+  .publicaciones-container {
+    padding: 1.5rem;
+  }
+  
+  .memento-header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .titulo-section h2 {
+    font-size: 2rem;
+  }
+  
+  .buttons-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .btn-contactar,
+  .btn-sugerir {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .app-container {
+    margin: 2rem auto;
+    padding: 1.5rem;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

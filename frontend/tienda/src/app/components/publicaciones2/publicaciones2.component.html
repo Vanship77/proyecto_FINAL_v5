@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+<div class="publicaciones-container">
+  <header class="memento-header">
+    <h1>MEMENTO - QUITO</h1>
+    <p class="subtitle">¡ESTOS SON LOS EVENTOS QUE SE PRESENTAN EN QUITO ESTA SEMANA!</p>
+  </header>
+
+  <main class="main-content">
+
+    <div class="buttons-container">
+      <button class="btn-contactar" (click)="contactar()">
+        <i class="fas fa-calendar-check"></i> CONTÁCTANOS
+      </button>
+      <button class="btn-sugerir" (click)="sugerirEvento()">
+        <i class="fas fa-plus-circle"></i> SUGERIR
+      </button>
+    </div>
+  </main>
+</div>
+
+<app-publicaciones></app-publicaciones>
+
+
+<app-footer></app-footer>

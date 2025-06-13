@@ -43,7 +43,7 @@
       <span>Inicio</span>
     </a>
     
-    <a class="nav-link" routerLink="/about" routerLinkActive="active" (click)="sidebarOpen = false">
+    <a class="nav-link" routerLink="/nosotros" routerLinkActive="active" (click)="sidebarOpen = false">
       <i class="bi bi-people"></i>
       <span>Nosotros</span>
     </a>
@@ -63,7 +63,7 @@
       <span>Saber más</span>
     </a>
     
-    <ng-container *ngIf="isLoggedIn">
+    <ng-container *ngIf="isLoggedIn && isAdmin">
       <div class="sidebar-divider"></div>
       
       <a class="nav-link admin-link" routerLink="/eventos" routerLinkActive="active" (click)="sidebarOpen = false">

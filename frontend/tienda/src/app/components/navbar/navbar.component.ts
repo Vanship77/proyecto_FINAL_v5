@@ -15,16 +15,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
   // Control de sidebars
   sidebarOpen = false;
   sidebar2Open = false;
-  
+
   // Estado de autenticación
   isLoggedIn = false;
   userName: string | null = null;
   authProvider: string | null = null;
-  
+  role: string | null = null;
+  isAdmin = false;
+
   private authSub!: Subscription;
   private userSub!: Subscription;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.setupAuthSubscriptions();
@@ -34,15 +36,50 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private setupAuthSubscriptions(): void {
     this.authSub = this.auth.isLoggedIn$.subscribe(status => {
       this.isLoggedIn = status;
+
+      // Validar si el usuario es admin cuando cambia el estado
+      this.updateAdminStatus();
+
       if (!status) {
         this.closeAllSidebars();
+        this.resetUserData();
       }
     });
-    
+
     this.userSub = this.auth.userData$.subscribe(userData => {
       this.userName = userData?.name || null;
       this.authProvider = userData?.provider || null;
+      this.role = userData?.role || null; // ← Aquí obtienes el role
+
+      // Actualizar estado admin cuando cambian los datos del usuario
+      this.updateAdminStatus();
     });
+  }
+
+  private updateAdminStatus(): void {
+    this.isAdmin = this.isLoggedIn && this.role === 'admin';
+  }
+
+  private resetUserData(): void {
+    this.userName = null;
+    this.authProvider = null;
+    this.role = null;
+    this.isAdmin = false;
+  }
+
+  // Método helper para verificar permisos de admin
+  isUserAdmin(): boolean {
+    return this.isLoggedIn && this.role === 'admin';
+  }
+
+  // Método para acciones que requieren permisos de admin
+  executeAdminAction(action: () => void): void {
+    if (this.isUserAdmin()) {
+      action();
+    } else {
+      console.warn('Acceso denegado: Se requieren permisos de administrador');
+      // Opcional: mostrar mensaje de error
+    }
   }
 
   closeAllSidebars(): void {
@@ -75,17 +112,26 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
+    this.router.navigate(['/']);
     this.auth.logout();
     this.closeAllSidebars();
-    this.router.navigate(['/']);
+    
   }
 
   getProviderIcon(): string {
-    switch(this.authProvider) {
+    switch (this.authProvider) {
       case 'google': return 'bi bi-google';
       case 'github': return 'bi bi-github';
       default: return 'bi bi-person';
     }
+  }
+
+  // Método para navegar al panel de admin (solo para admins)
+  goToAdminPanel(): void {
+    this.executeAdminAction(() => {
+      this.router.navigate(['/admin']);
+      this.closeAllSidebars();
+    });
   }
 
   ngOnDestroy() {

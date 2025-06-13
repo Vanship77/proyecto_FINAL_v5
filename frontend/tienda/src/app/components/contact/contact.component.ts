@@ -33,41 +33,41 @@ export class ContactComponent {
 
   onSubmit() {
     if (this.contact.valid) {
-      const templateParams = {
-        title: 'Mensaje enviado',
-        name: this.contact.value.usuario,
-        email: this.contact.value.email,
-        message: this.contact.value.mensaje,
-        time: new Date().toLocaleString()
-      };
+const templateParams = {
+  title: 'Mensaje enviado',
+  name: this.contact.value.usuario,
+  email: this.contact.value.email,
+  message: this.contact.value.mensaje,
+  time: new Date().toLocaleString()
+};
 
-      emailjs.send(
-        'service_m444tn8',    // <-- reemplaza con tu Service ID
-        'template_mi1e12o',   // <-- reemplaza con tu Template ID
-        templateParams,
-        'xstcBC22e-Z2Hd3eN'     // <-- reemplaza con tu Public Key
-      ).then(() => {
-        this.submitted = true;
-        this.contact.reset();
-      }, (error) => {
-        alert('Hubo un problema al enviar el mensaje. Intenta más tarde.');
-        console.error(error);
-      });
+emailjs.send(
+  'service_7y1nbup',    // <-- reemplaza con tu Service ID
+  'template_mi1e12o',   // <-- reemplaza con tu Template ID
+  templateParams,
+  'xstcBC22e-Z2Hd3eN'     // <-- reemplaza con tu Public Key
+).then(() => {
+  this.submitted = true;
+  this.contact.reset();
+}, (error) => {
+  alert('Hubo un problema al enviar el mensaje. Intenta más tarde.');
+  console.error(error);
+});
 
-       this.http.post('http://localhost:8080/api/mensajes', 
- {
-        usuario: this.contact.value.usuario,
-        email: this.contact.value.email,
-        mensaje: this.contact.value.mensaje,
-        fecha: new Date()
-      }).subscribe({
-        next: (res: any) => {
-          console.log('Mensaje guardado en base de datos:', res);
-        },
-        error: (err) => {
-          console.error('Error al guardar en la base de datos:', err);
-        }
-      });
+this.http.post('http://localhost:8080/api/mensajes', 
+{
+  usuario: this.contact.value.usuario,
+  email: this.contact.value.email,
+  mensaje: this.contact.value.mensaje,
+  fecha: new Date()
+}).subscribe({
+  next: (res: any) => {
+    console.log('Mensaje guardado en base de datos:', res);
+  },
+  error: (err) => {
+    console.error('Error al guardar en la base de datos:', err);
+  }
+});
 
     } else {
       alert('Por favor completar todos los campos correctamente 🛑');

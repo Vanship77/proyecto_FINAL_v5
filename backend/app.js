@@ -6,12 +6,12 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
-
+const cookieParser = require('cookie-parser');
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 8080;
-
+app.use(cookieParser());
 // CORS permite solo peticione de un origen en especifico en este caso nuestro front end de angular 
 app.use(cors({
   origin: 'http://localhost:4200',

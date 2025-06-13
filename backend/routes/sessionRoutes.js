@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { getSessionInfo, getSessionInfoAndrokolis } = require('../controllers/sessionController');
-const jwt=require('../middlewares/loginLocalValidator');
+const auth1=require('../oauth/authenticate');
 
-router.get('/api/sesion',jwt.authMiddleware ,getSessionInfoAndrokolis);
+router.get('/api/sesion',auth1.hybridAuth ,getSessionInfoAndrokolis);
 
 module.exports = router;

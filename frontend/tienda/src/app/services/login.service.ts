@@ -1,40 +1,45 @@
+// src/app/services/login.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Global } from './global';
+import { tap } from 'rxjs/operators';
+import { AuthService } from './auth.services';
 
 interface LoginResponse {
-  token: string;
   user: {
     id: string;
     firstName: string;
     email: string;
     photoUrl?: string;
+    role: string;
   };
+  message: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:8080/login'; // o localhost
+  private apiUrl = 'http://localhost:8080/login';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
   login(email: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(this.apiUrl, { email, password });
-  }
-
-  saveToken(token: string) {
-    localStorage.setItem('token', token);
-    
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem('token');
+    return this.http.post<LoginResponse>(
+      this.apiUrl,
+      { email, password },
+      { withCredentials: true }
+    ).pipe(
+      tap(response => {
+        this.authService.setJWTUser(response.user);
+      })
+    );
   }
 
   logout() {
-    localStorage.removeItem('token');
+    this.authService.logout();
   }
 }

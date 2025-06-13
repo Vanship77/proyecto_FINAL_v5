@@ -17,10 +17,11 @@ import { Carousel2Component } from '../carousel2/carousel2.component';
     NavbarComponent,
     FooterComponent,
     CarouselComponent,
-    Carousel2Component
+    Carousel2Component,
   ],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [EventoService]
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   eventos: Evento[] = [];
@@ -37,16 +38,32 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const wrapper = this.carouselWrapper.nativeElement;
+    // Esperar un tick para que los elementos se rendericen
+    setTimeout(() => {
+      this.cloneCards();
+    }, 0);
+  }
+
+  private cloneCards() {
+    const wrapper = this.carouselWrapper?.nativeElement;
+    if (!wrapper) return;
+
     const cards = wrapper.querySelectorAll('.card');
-    cards.forEach(card => {
-      const clone = card.cloneNode(true);
-      wrapper.appendChild(clone);
-    });
+    
+    // Verificar que existan cards antes de hacer forEach
+    if (cards && cards.length > 0) {
+      // Convertir NodeList a Array y hacer forEach
+      Array.from(cards).forEach(card => {
+        const clone = card.cloneNode(true);
+        wrapper.appendChild(clone);
+      });
+    }
   }
 
   scroll(direction: number) {
-    const wrapper = this.carouselWrapper.nativeElement;
+    const wrapper = this.carouselWrapper?.nativeElement;
+    if (!wrapper) return;
+
     const card = wrapper.querySelector('.card') as HTMLElement | null;
     if (!card) return;
 

@@ -7,6 +7,7 @@ const registerRoutes=require('./registroLocalRoutes');
 const locaLogin=require('./localLoginRoutes');
 
 
+
 //documentacion
 router.use('/',require('./swagger'));
 

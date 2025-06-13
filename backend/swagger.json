@@ -8,18 +8,7 @@
   "host": "localhost:8080",
   "basePath": "/",
   "tags": [
-    {
-      "name": "Eventos"
-    },
-    {
-      "name": "Login"
-    },
-    {
-      "name": "google"
-    },
-    {
-      "name": "github"
-    }
+    
   ],
   "schemes": [
     "https",

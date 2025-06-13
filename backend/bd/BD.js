@@ -1,3 +1,4 @@
+// libreria que permite leer variable de entorno
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 

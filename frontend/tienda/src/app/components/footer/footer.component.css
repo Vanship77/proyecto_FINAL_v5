@@ -1,88 +1,194 @@
 .footer {
-  background-color: #212529; /* Verde oscuro */
+  background-color: #000000;
   color: #ffffff;
-  padding: 2rem 1.5rem;
+  padding: 2rem 1rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   font-family: 'Work Sans', sans-serif;
+  gap: 2rem;
+  position: relative;
+  flex-direction: row;
 }
 
-.footer a {
-  color: #ffffff;
-  text-decoration: none;
-  transition: color 0.3s ease;
+.footer-left,
+.footer-center,
+.footer-right {
+  flex: 1 1 280px;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.footer a:hover {
-  color: #95d5b2; /* Verde claro suave */
+.about-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
 
 .about {
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .work-sans-400 { font-weight: 400; }
 .work-sans-600 { font-weight: 600; }
 .work-sans-700 { font-weight: 700; }
 
-.icons a {
-  font-size: 1.3rem;
+.icons {
+  margin-top: 0.7rem;
+}
+
+.social-icon {
+  display: inline-block;
+  font-size: 1.4rem;
   margin-right: 10px;
-  color: #ffffff;
-}
-.icons a:hover {
-  color: #74c69d; /* Verde más alegre */
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.auth-buttons a {
-  background-color: #ffffff;
-  color: #1b4332;
-  font-weight: 600;
-  padding: 5px 12px;
-  border-radius: 5px;
-  margin-right: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+.social-icon:hover {
+  transform: scale(1.2) rotate(5deg);
+  color: #FFD700;
 }
 
-.auth-buttons a:hover {
-  background-color: #95d5b2;
-  color: #1b4332;
+/* CENTRAR texto Quito y teléfono */
+.footer-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* centra horizontalmente */
+  justify-content: center;
+  text-align: center;
 }
 
 .footer-center i,
 .footer-center div {
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* centra íconos con texto */
+  gap: 8px;
+}
+
+.map-container {
+  margin-top: 0.8rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+  height: 150px;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.map-container:hover {
+  transform: scale(1.02);
 }
 
 .footer-right {
-  text-align: right;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-right img {
+  height: 90px;
+  margin-bottom: 0.8rem;
+  transition: transform 0.4s ease;
+}
+
+.footer-right img:hover {
+  transform: scale(1.05) rotate(1deg);
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 0.5rem;
 }
 
 .menu a {
-  margin: 0 5px;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+  position: relative;
+  padding: 5px 8px;
+  transition: color 0.3s ease;
+}
+
+.menu a::after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 2px;
+  background-color: #FFD700;
+  transition: width 0.3s ease;
+  margin-top: 3px;
+}
+
+.menu a:hover {
+  color: #FFD700;
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+.separator {
+  color: #999;
+  font-weight: 400;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.footer-bottom {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.footer-line {
+  border: none;
+  border-top: 1px solid #444;
+  margin: 0 auto 1rem auto;
+  width: 80%;
 }
 
 .name {
-  font-size: 0.85rem;
-  color: #d8f3dc;
+  font-size: 0.9rem;
+  color: #bbbbbb;
 }
 
 @media (max-width: 768px) {
   .footer {
     flex-direction: column;
     align-items: flex-start;
+    text-align: left;
   }
 
   .footer-right {
-    text-align: left;
-    margin-top: 1rem;
+    text-align: center;
+    margin-top: 1.5rem;
+    align-items: center;
   }
 
   .footer-center {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .footer-bottom {
+    text-align: center;
   }
 }

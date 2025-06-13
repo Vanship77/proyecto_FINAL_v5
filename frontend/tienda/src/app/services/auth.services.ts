@@ -8,6 +8,7 @@ interface UserSession {
     name: string;
     email: string;
     provider?: 'local' | 'google' | 'github';
+    role:string;
   };
 }
 
@@ -16,7 +17,7 @@ interface UserSession {
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
-  private userData = new BehaviorSubject<{name: string, provider?: string} | null>(null);
+  private userData = new BehaviorSubject<{name: string, provider?: string,role:string} | null>(null);
   
   isLoggedIn$ = this.loggedIn.asObservable();
   userData$ = this.userData.asObservable();
@@ -33,7 +34,8 @@ export class AuthService {
           if (res.loggedIn && res.user) {
             this.userData.next({
               name: res.user.name || this.extractNameFromEmail(res.user.email),
-              provider: res.user.provider
+              provider: res.user.provider,
+              role:res.user.role,
             });
           } else {
             this.userData.next(null);

@@ -1,0 +1,90 @@
+<app-navbar></app-navbar>
+
+<div class="saber-mas-hero text-center text-white d-flex align-items-center justify-content-center">
+  <div>
+    <h1 class="display-4 fw-bold">Explorar Eventos Futuros</h1>
+    <p class="lead">Prepárate para vivir experiencias únicas e inolvidables con nuestros próximos eventos.</p>
+  </div>
+</div>
+
+<div class="container my-5">
+  <h2 class="text-center mb-4">¿Por qué elegir nuestros eventos?</h2>
+
+  <div class="d-flex justify-content-center flex-wrap gap-4">
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <p class="title">Innovación</p>
+          <p></p>
+        </div>
+        <div class="flip-card-back">
+          <p class="title">Usamos tecnología de punta</p>
+          <p>Experiencias inmersivas y tendencias modernas</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <p class="title">Experiencia</p>
+          <p></p>
+        </div>
+        <div class="flip-card-back">
+          <p class="title">+500 eventos realizados</p>
+          <p>Profesionales con años de trayectoria</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <p class="title">Conexión</p>
+          
+        </div>
+        <div class="flip-card-back">
+          <p class="title">Nos importas tú</p>
+          <p>Adaptamos cada detalle a tu estilo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-5" />
+
+  <h3 class="text-center mb-4">Preguntas Frecuentes</h3>
+  <div class="accordion" id="faqAccordion">
+    <div class="accordion-item" *ngFor="let faq of faqCards; let i = index">
+      <h2 class="accordion-header" [id]="'heading' + i">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#collapse' + i" [attr.aria-expanded]="i === 0"
+          [attr.aria-controls]="'collapse' + i">
+          {{ faq.pregunta }}
+        </button>
+      </h2>
+      <div [id]="'collapse' + i" class="accordion-collapse collapse" [class.show]="i === 0"
+        [attr.aria-labelledby]="'heading' + i" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          {{ faq.respuesta }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-5" />
+
+  <h3 class="text-center mb-4">Testimonios</h3>
+  <div class="d-flex justify-content-center flex-wrap gap-4">
+    <div class="card testimonial-card" *ngFor="let testimonio of testimonios">
+      <div class="align">
+        <span class="red"></span>
+        <span class="yellow"></span>
+        <span class="green"></span>
+      </div>
+      <h1>{{ testimonio.autor }}</h1>
+      <p>{{ testimonio.texto }}</p>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

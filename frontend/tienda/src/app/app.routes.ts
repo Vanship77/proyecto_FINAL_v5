@@ -9,8 +9,10 @@ import { EventoFormComponent } from './components/evento-form/evento-form.compon
 import { EventoListComponent } from './components/evento-list/evento-list.component';
 import { PublicacionesComponent } from './components/publicaciones/publicaciones.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { SaberMasComponent } from './components/saber.mas/saber.mas.component';
 
 import { LoginComponent } from './components/login/login.component';
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,10 +26,12 @@ export const routes: Routes = [
   {path : 'publicaciones', component: PublicacionesComponent },
  { path: 'registro', component: RegistroComponent },
  { path: 'login', component: LoginComponent },
+ { path: 'nosotros', component: NosotrosComponent },
   // 👉 Nuevas rutas de eventos
   { path: 'eventos', component: EventoListComponent },
   { path: 'eventos/crear', component: EventoFormComponent },
   { path: 'eventos/editar/:id', component: EventoFormComponent },
+  {path: 'saber-mas', component: SaberMasComponent }
 
   // Si mantienes el form dinámico
 

@@ -54,13 +54,32 @@ initDB((err) => {
 
 
 
-
+// Logout
+app.get('/logout', (req, res) => {
+  req.logout(err => {
+    if (err) {
+      console.error('Error cerrando sesión:', err);
+      return res.status(500).send('Error cerrando sesión');
+    }
+    req.session.destroy(() => {
+      res.clearCookie('connect.sid');
+      res.redirect('/');
+    });
+  });
+});
 
 // Estado de sesión (usando req.user)
 app.get('/', (req, res) => {
   res.send(req.user ? `Logged in as: ${req.user.firstName}` : 'Logged out');
 });
 // Ver estado sesión
+app.get('/api/session/status', (req, res) => {
+  if (req.user) {
+    res.json({ loggedIn: true, user: req.user });
+  } else {
+    res.json({ loggedIn: false });
+  }
+});
 
 // Rutas
 app.use('/', require('./routes'));

@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 8080;
 
-// CORS
+// CORS permite solo peticione de un origen en especifico en este caso nuestro front end de angular 
 app.use(cors({
   origin: 'http://localhost:4200',
   credentials: true,
@@ -39,10 +39,6 @@ require('./config/passport'); // Estrategias separadas
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Estado de sesión (usando req.user)
-app.get('/', (req, res) => {
-  res.send(req.user ? `Logged in as: ${req.user.firstName}` : 'Logged out');
-});
 
 // DB
 initDB((err) => {
@@ -54,13 +50,22 @@ initDB((err) => {
 
 
 
-
-
-// Estado de sesión (usando req.user)
-app.get('/', (req, res) => {
-  res.send(req.user ? `Logged in as: ${req.user.firstName}` : 'Logged out');
+// Logout
+app.get('/logout', (req, res) => {
+  req.logout(err => {
+    if (err) {
+      console.error('Error cerrando sesión:', err);
+      return res.status(500).send('Error cerrando sesión');
+    }
+    req.session.destroy(() => {
+      res.clearCookie('connect.sid');
+      res.redirect('/');
+    });
+  });
 });
-// Ver estado sesión
+
+
+
 
 // Rutas
 app.use('/', require('./routes'));

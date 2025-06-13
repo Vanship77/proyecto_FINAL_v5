@@ -6,8 +6,6 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
-const mongoose = require('mongoose');
-const mensajeRoute = require('./routes/mensajes');
 
 dotenv.config();
 
@@ -56,22 +54,37 @@ initDB((err) => {
 
 
 
-
+// Logout
+app.get('/logout', (req, res) => {
+  req.logout(err => {
+    if (err) {
+      console.error('Error cerrando sesión:', err);
+      return res.status(500).send('Error cerrando sesión');
+    }
+    req.session.destroy(() => {
+      res.clearCookie('connect.sid');
+      res.redirect('/');
+    });
+  });
+});
 
 // Estado de sesión (usando req.user)
 app.get('/', (req, res) => {
   res.send(req.user ? `Logged in as: ${req.user.firstName}` : 'Logged out');
 });
 // Ver estado sesión
+app.get('/api/session/status', (req, res) => {
+  if (req.user) {
+    res.json({ loggedIn: true, user: req.user });
+  } else {
+    res.json({ loggedIn: false });
+  }
+});
 
 // Rutas
 app.use('/', require('./routes'));
-app.use('/api', require('./routes/mensajes'));  
 //servir imagenes
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-
-
 // Start server
 app.listen(port, () => {
   console.log(`Running on port: ${port}`);

@@ -1,60 +1,136 @@
 <nav class="navbar">
-  <button (click)="toggleSidebar()" aria-label="Toggle left sidebar">☰ Izquierda</button>
-  <div class="title">Andrakolis Navbar</div>
-  <button (click)="toggleSidebar2()" aria-label="Toggle right sidebar">☰ Derecha</button>
+  <!-- Botón sidebar izquierdo -->
+  <button class="navbar-toggle" (click)="toggleSidebar()" aria-label="Toggle left sidebar" [attr.aria-expanded]="sidebarOpen">
+    <i class="bi bi-list"></i> 
+    <span class="toggle-label">Menú</span>
+  </button>
+  
+  <!-- Título del navbar -->
+  <div class="navbar-brand">
+    <a routerLink="/" class="title" aria-label="Página principal">Andrakolis Navbar</a>
+  </div>
+
+  <!-- Mensaje de bienvenida -->
+  <div *ngIf="isLoggedIn && userName" class="welcome-message" aria-live="polite">
+    <i [class]="getProviderIcon()" aria-hidden="true"></i> 
+    <span class="welcome-text">{{userName}}</span>
+  </div>
+
+  <!-- Botón sidebar derecho con estado dinámico -->
+  <button class="navbar-toggle account-toggle" 
+          (click)="toggleSidebar2()" 
+          [attr.aria-label]="isLoggedIn ? 'Menú de cuenta' : 'Opciones de acceso'" 
+          [attr.aria-expanded]="sidebar2Open">
+    <i class="bi" [class.bi-person-circle]="!isLoggedIn" [class.bi-person-check-fill]="isLoggedIn"></i> 
+    <span class="toggle-label">{{ isLoggedIn ? 'Cuenta' : 'Acceso' }}</span>
+  </button>
 </nav>
 
-<aside class="sidebar left bg-dark text-white pt-4" [class.open]="sidebarOpen">
-  <button class="close-btn" (click)="sidebarOpen = false" aria-label="Cerrar sidebar izquierdo">×</button>
-  <nav class="nav flex-column px-3" [class.collapsed]="!sidebarOpen" aria-label="Sidebar navigation">
-    <a class="nav-link d-flex align-items-center gap-2" href="/home">
-      <i class="bi bi-house"></i><span>Inicio</span>
+<!-- Sidebar izquierdo -->
+<aside class="sidebar left bg-dark text-white" 
+       [class.open]="sidebarOpen" 
+       [attr.aria-hidden]="!sidebarOpen" 
+       aria-modal="true">
+  <div class="sidebar-header">
+    <button class="close-btn" (click)="sidebarOpen = false" aria-label="Cerrar menú principal">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </div>
+  
+  <nav class="nav flex-column" aria-label="Navegación principal">
+    <a class="nav-link" routerLink="/home" routerLinkActive="active" (click)="sidebarOpen = false">
+      <i class="bi bi-house"></i>
+      <span>Inicio</span>
     </a>
-    <a class="nav-link d-flex align-items-center gap-2" href="/nosotros">
-      <i class="bi bi-people"></i><span>Nosotros</span>
+    
+    <a class="nav-link" routerLink="/about" routerLinkActive="active" (click)="sidebarOpen = false">
+      <i class="bi bi-people"></i>
+      <span>Nosotros</span>
     </a>
-    <a class="nav-link d-flex align-items-center gap-2" href="/contact">
-      <i class="bi bi-envelope"></i><span>Contacto</span>
+    
+    <a class="nav-link" routerLink="/contact" routerLinkActive="active" (click)="sidebarOpen = false">
+      <i class="bi bi-envelope"></i>
+      <span>Contacto</span>
     </a>
-    <a class="nav-link d-flex align-items-center gap-2" href="/publicaciones">
-      <i class="bi bi-calendar3"></i><span>Eventos Publicados</span>
+    
+    <a class="nav-link" routerLink="/publicaciones" routerLinkActive="active" (click)="sidebarOpen = false">
+      <i class="bi bi-calendar3"></i>
+      <span>Eventos Publicados</span>
     </a>
-    <a class="nav-link d-flex align-items-center gap-2" href="/saber-mas">
-      <i class="bi bi-info-circle"></i><span>Saber más</span>
+    
+    <a class="nav-link" routerLink="/eventos" routerLinkActive="active" (click)="sidebarOpen = false">
+      <i class="bi bi-info-circle"></i>
+      <span>Saber más</span>
     </a>
-    <a *ngIf="isLoggedIn" class="nav-link d-flex align-items-center gap-2 mt-3" href="/eventos">
-      <i class="bi bi-box"></i><span>Modificar Eventos</span>
-    </a>
+    
+    <ng-container *ngIf="isLoggedIn">
+      <div class="sidebar-divider"></div>
+      
+      <a class="nav-link admin-link" routerLink="/eventos" routerLinkActive="active" (click)="sidebarOpen = false">
+        <i class="bi bi-box"></i>
+        <span>Modificar Eventos</span>
+      </a>
+    </ng-container>
   </nav>
-  <div class="sidebar-footer px-3 mt-4">
-    <a href="/soporte" class="text-white d-block mb-2">Soporte</a>
+  
+  <div class="sidebar-footer">
+    <a routerLink="/support" class="support-link" (click)="sidebarOpen = false">
+      <i class="bi bi-question-circle"></i>
+      <span>Soporte</span>
+    </a>
   </div>
 </aside>
 
-<aside class="sidebar right" [class.open]="sidebar2Open" aria-label="User menu">
-  <button class="close-btn" (click)="sidebar2Open = false" aria-label="Cerrar sidebar derecho">×</button>
-  <nav class="nav flex-column px-3">
+<!-- Sidebar derecho (menú usuario) -->
+<aside class="sidebar right" 
+       [class.open]="sidebar2Open" 
+       [attr.aria-hidden]="!sidebar2Open" 
+       aria-modal="true">
+  <div class="sidebar-header">
+    <button class="close-btn" (click)="sidebar2Open = false" aria-label="Cerrar menú de usuario">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </div>
+  
+  <nav class="nav flex-column" aria-label="Menú de usuario">
     <ng-container *ngIf="!isLoggedIn; else loggedInButtons">
-      <a class="nav-link d-flex align-items-center gap-2" href="/login">
-        <i class="bi bi-box-arrow-in-right"></i><span>Iniciar sesión</span>
+      <a class="nav-link" routerLink="/login" routerLinkActive="active" (click)="sidebar2Open = false">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span>Iniciar sesión</span>
       </a>
-      <a class="nav-link d-flex align-items-center gap-2" href="/registro">
-        <i class="bi bi-person-plus"></i><span>Crear cuenta</span>
+      
+      <a class="nav-link" routerLink="/registro" routerLinkActive="active" (click)="sidebar2Open = false">
+        <i class="bi bi-person-plus"></i>
+        <span>Crear cuenta</span>
       </a>
-      <button class="btn btn-light btn-sm my-2 d-flex align-items-center gap-2" (click)="loginWithGithub()" aria-label="Login with GitHub">
-        <i class="bi bi-github fs-5"></i>Ingresar con GitHub
+      
+      <button class="auth-btn github" (click)="loginWithGithub()" aria-label="Ingresar con GitHub">
+        <i class="bi bi-github"></i>
+        <span>Ingresar con GitHub</span>
       </button>
-      <button class="btn btn-light btn-sm my-2 d-flex align-items-center gap-2" (click)="loginWithGoogle()" aria-label="Login with Google">
-        <i class="bi bi-google fs-5"></i>Ingresar con Google
+      
+      <button class="auth-btn google" (click)="loginWithGoogle()" aria-label="Ingresar con Google">
+        <i class="bi bi-google"></i>
+        <span>Ingresar con Google</span>
       </button>
     </ng-container>
+    
     <ng-template #loggedInButtons>
-      <button class="btn btn-light btn-sm my-2 w-100 d-flex align-items-center justify-content-center gap-2" aria-label="Perfil">
-        <i class="bi bi-person-lines-fill"></i>Perfil
-      </button>
-      <button class="btn btn-danger btn-sm my-2 w-100 d-flex align-items-center justify-content-center gap-2" (click)="logout()" aria-label="Cerrar sesión">
-        <i class="bi bi-box-arrow-right"></i>Cerrar sesión
+      <a class="nav-link" routerLink="/profile" routerLinkActive="active" (click)="sidebar2Open = false">
+        <i class="bi bi-person-lines-fill"></i>
+        <span>Perfil</span>
+      </a>
+      
+      <button class="auth-btn logout" (click)="logout()" aria-label="Cerrar sesión">
+        <i class="bi bi-box-arrow-right"></i>
+        <span>Cerrar sesión</span>
       </button>
     </ng-template>
   </nav>
 </aside>
+
+<!-- Overlay para cerrar sidebars al hacer clic fuera -->
+<div class="sidebar-overlay" 
+     (click)="closeAllSidebars()"
+     [class.active]="sidebarOpen || sidebar2Open"
+     aria-hidden="true"></div>

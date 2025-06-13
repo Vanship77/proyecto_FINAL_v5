@@ -1,5 +1,5 @@
+// controllers/loginController.js
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secreto_super_seguro';
@@ -13,31 +13,32 @@ const loginUser = async (req, res) => {
     }
 
     const user = await User.findOne({ email });
-    if (!user) {
+    if (!user || password !== user.password) {
       return res.status(401).json({ message: 'Credenciales inválidas' });
     }
 
-    // Aquí comparación directa sin bcrypt porque no está hasheada
-    if (password !== user.password) {
-      return res.status(401).json({ message: 'Credenciales inválidas' });
-    }
-
-    // Generar JWT como antes
     const token = jwt.sign(
       { userId: user._id, email: user.email, role: user.role || 'user' },
       JWT_SECRET,
-      { expiresIn: '1h' }
+      { expiresIn: '1d' }
     );
+
+    // Establecer cookie httpOnly
+    res.cookie('jwt_token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production', // HTTPS en producción
+      sameSite: 'strict',
+      maxAge: 24 * 60 * 60 * 1000 // 24 horas
+    });
 
     res.status(200).json({
       message: 'Login exitoso',
-      token,
       user: {
         id: user._id,
         firstName: user.firstName,
         email: user.email,
         photoUrl: user.photoUrl,
-        role:user.role
+        role: user.role
       }
     });
 
@@ -47,4 +48,33 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { loginUser };
+// controllers/loginController.js
+const logoutUser = (req, res) => {
+  // Borrar cookie JWT
+  res.clearCookie('jwt_token', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+  });
+
+  // Logout de Passport (con callback)
+  if (req.logout) {
+    req.logout(err => {
+      if (err) {
+        console.error('Error al hacer logout con Passport:', err);
+        return res.status(500).json({ message: 'Error al cerrar sesión' });
+      }
+
+      // Destruir sesión (opcional si usas sesiones)
+      req.session?.destroy?.();
+
+      return res.status(200).json({ message: 'Logout exitoso' });
+    });
+  } else {
+    // Si no estás usando Passport
+    req.session?.destroy?.();
+    res.status(200).json({ message: 'Logout exitoso' });
+  }
+};
+
+module.exports = { loginUser, logoutUser, };

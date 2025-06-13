@@ -112,10 +112,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
-    this.router.navigate(['/']);
-    this.auth.logout();
-    this.closeAllSidebars();
-    
+
+    this.auth.logout(); 
   }
 
   getProviderIcon(): string {

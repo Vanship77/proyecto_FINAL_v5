@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -21,46 +22,26 @@ export class AuthService {
   isLoggedIn$ = this.loggedIn.asObservable();
   userData$ = this.userData.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
     this.checkSession();
   }
 
   checkSession() {
-    this.http.get<UserSession>('http://localhost:8080/api/session/status', { withCredentials: true })
+    this.http.get<{ loggedIn: boolean }>('http://localhost:8080/api/sesion/api/sesion', { withCredentials: true })
       .subscribe({
-        next: (res) => {
-          this.loggedIn.next(res.loggedIn);
-          if (res.loggedIn && res.user) {
-            this.userData.next({
-              name: res.user.name || this.extractNameFromEmail(res.user.email),
-              provider: res.user.provider
-            });
-          } else {
-            this.userData.next(null);
-          }
-        },
-        error: () => {
-          this.loggedIn.next(false);
-          this.userData.next(null);
-        }
+        next: res => this.loggedIn.next(res.loggedIn),
+        error: () => this.loggedIn.next(false)
       });
-  }
-
-  private extractNameFromEmail(email: string): string {
-    return email.split('@')[0];
   }
 
   logout() {
     this.http.get('http://localhost:8080/logout', { withCredentials: true })
       .subscribe({
-        next: () => {
-          this.loggedIn.next(false);
-          this.userData.next(null);
-        },
-        error: () => {
-          this.loggedIn.next(false);
-          this.userData.next(null);
-        }
+        next: () => this.loggedIn.next(false),
+        error: () => this.loggedIn.next(false)
       });
   }
 }

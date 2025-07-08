@@ -3,29 +3,34 @@ const eventoRutas = require('./eventoRoutes');
 const passport = require('passport');
 const authRoutes = require('./authRoutes');
 const sesionRoutes = require('./sessionRoutes');
-const registerRoutes=require('./registroLocalRoutes');
-const locaLogin=require('./localLoginRoutes');
+const registerRoutes = require('./registroLocalRoutes');
+const locaLogin = require('./localLoginRoutes');
 
+// Documentación
+router.use('/', require('./swagger'));
 
+// Ruta básica para test
+router.get('/home', (req, res) => {
+  res.send('🛡️ Bienvenido a la API de Eventos en /home');
+});
 
-//documentacion
-router.use('/',require('./swagger'));
-
-//rutas de eventos
+// Rutas de eventos
 router.use('/api/eventos', eventoRutas);
-//ruta para obetener la informacion de la sesion
+
+// Ruta para obtener la información de la sesión
 router.use('/api/sesion', sesionRoutes);
-//registrar local
-router.use('/api',registerRoutes);
-//login local
-router.use('/',locaLogin);
-//oauth rutas
+
+// Registro local
+router.use('/api', registerRoutes);
+
+// Login local
+router.use('/', locaLogin);
+
+// OAuth rutas
 router.get('/login/github', passport.authenticate('github'), (req, res) => {});
 router.get('/login/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-//callback rutas 
+
+// Callback rutas 
 router.use('/', authRoutes);
 
-
-
-
-module.exports = router;//just for changes
+module.exports = router;

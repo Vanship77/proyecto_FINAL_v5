@@ -2,7 +2,7 @@
 body {
   background-color: #f5f5f5;
   color: #333;
-  padding-top: 60px;
+  padding-top: 100px;
 }
 
 /* Navbar - gris oscuro */
@@ -12,7 +12,7 @@ body {
   left: 0;
   right: 0;
   height: 60px;
-  background-color: #2c3e50; /* Gris oscuro */
+  background-color: #5c0b55; /* Morado Oscurito */
   color: white;
   display: flex;
   align-items: center;
@@ -29,8 +29,8 @@ body {
   bottom: 0;
   width: 280px;
   max-width: 85%;
-  background-color: #1a252f; /* Gris más oscuro */
-  color: white;
+  background-color: #5c0b559c; /* Morado Oscurito */
+  color: rgb(255, 255, 255);
   overflow-y: auto;
   transform: translateX(-100%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -44,12 +44,12 @@ body {
 .nav-link:hover, 
 .nav-link.active,
 .navbar-toggle:hover {
-  background-color: #4a235a; /* Morado oscuro */
+  background-color: #9834c0; /* Morado oscuro */
 }
 
 /* Navbar buttons */
 .navbar-toggle {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(30, 3, 66, 0.082);
   border: none;
   color: white;
   font-size: 1rem;
@@ -64,7 +64,7 @@ body {
 }
 
 .navbar-toggle:hover {
-  background: #4a235a; /* Morado oscuro */
+  background: #b700ff; /* Morado oscuro */
   transform: translateY(-1px);
 }
 
@@ -81,14 +81,15 @@ body {
 }
 
 .navbar-brand .title {
-  color: white;
+  color: rgb(255, 255, 255);
   text-decoration: none;
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 2rem; /* Aumentado el tamaño de fuente */
   user-select: none;
   white-space: nowrap;
   transition: opacity 0.2s ease;
-  margin-right: auto;
+  margin: 0 auto; /* Elimina margin-right y centra */
+  text-align: center;
 }
 
 .navbar-brand .title:hover {
@@ -115,7 +116,7 @@ body {
 .close-btn {
   background: none;
   border: none;
-  color: white;
+  color: rgb(255, 255, 255);
   font-size: 1.2rem;
   cursor: pointer;
 }
@@ -125,7 +126,7 @@ body {
 }
 
 .nav-link {
-  color: white;
+  color: rgb(255, 255, 255);
   padding: 12px 20px;
   display: flex;
   align-items: center;
@@ -135,13 +136,14 @@ body {
 }
 
 .nav-link:hover, .nav-link.active {
-  background-color: #4a235a; /* Morado oscuro */
+  background-color: #68217e; /* Morado oscuro */
 }
 
 .nav-link i {
   font-size: 1.1rem;
   width: 24px;
   text-align: center;
+  
 }
 
 /* Divider between sections */
@@ -155,7 +157,7 @@ body {
 .sidebar-footer {
   margin-top: auto;
   padding: 15px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(201, 28, 28, 0.1);
 }
 
 .sidebar-overlay {
@@ -192,11 +194,11 @@ body {
 }
 
 .auth-btn.google {
-  background-color: #4285F4;
+  background-color: #5185e7;
 }
 
 .auth-btn.github {
-  background-color: #333;
+  background-color: #46b1c4;
 }
 
 .auth-btn.logout {

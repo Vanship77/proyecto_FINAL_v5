@@ -1,6 +1,6 @@
 form {
   max-width: 400px;
-  margin: 2rem auto;
+  margin: 5rem auto;
   padding: 30px 25px;
   background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
   border-radius: 14px;
@@ -44,7 +44,7 @@ button:hover {
 
 h3 {
   text-align: center;
-  margin: 2rem 0 1rem;
+  margin: 5rem 0 1rem;
   font-weight: 700;
   color: #102a43;
   letter-spacing: 1.2px;

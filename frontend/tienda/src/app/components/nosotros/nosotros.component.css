@@ -8,8 +8,8 @@
 
 /* HERO */
 .nosotros-hero {
-  background: linear-gradient(135deg, #0d47a1, #1976d2);
-  color: #eee;
+  background: linear-gradient(135deg, #0d47a1, #c016b2);
+  color: #a817c5;
   text-align: center;
   padding: 4rem 2rem;
   border-radius: 1.5rem;
@@ -24,7 +24,7 @@
 .nosotros-hero p {
   font-size: 1.3rem;
   font-weight: 500;
-  color: #cfd8dc;
+  color: #a817c5;
 }
 
 /* QUIÉNES SOMOS */
@@ -46,7 +46,7 @@
 .nosotros-content .texto h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #bbdefb;
+  color: #a817c5;
 }
 
 .nosotros-content .texto p {
@@ -84,7 +84,7 @@
 .nosotros-historia h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #90caf9;
+  color: #a817c5;
 }
 
 .nosotros-historia p {
@@ -103,7 +103,7 @@
 .valores h2 {
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #bbdefb;
+  color: #a817c5;
 }
 
 .valores .cards {
@@ -159,7 +159,7 @@
 /* NUESTRO EQUIPO */
 .equipo-container {
   background-color: #181818;
-  color: #ccc;
+  color: #a817c5;
   padding: 4rem 1rem;
   text-align: center;
   border-radius: 1.5rem;
@@ -226,7 +226,7 @@
 
 /* POR QUÉ ELEGIRNOS */
 .por-que {
-  background: linear-gradient(135deg, #0d47a1, #121212);
+  background: linear-gradient(135deg, #0d47a1, #6f1a7a);
   padding: 4rem 2rem;
   text-align: center;
   border-top: 2px solid #42a5f5;
@@ -236,7 +236,7 @@
 .por-que h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  color: #bbdefb;
+  color: #a817c5;
 }
 
 .por-que ul {

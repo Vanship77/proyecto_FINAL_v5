@@ -10,50 +10,53 @@
 
   <!-- Formulario a la derecha -->
   <div style="flex: 1;">
-    <h1 style="color: #550191; margin-top: 3rem; margin-bottom: 1rem;">Contactanos</h1>
+  <h1 style="color: #6807ad; margin-top: 3rem; margin-bottom: 1.5rem;">Contáctanos</h1>
+
+  <p style="color: #6c757d; font-style: italic; margin-bottom: 1rem;">
+  ¿Quieres estar al tanto de los mejores conciertos y eventos en vivo? Completa el formulario y recibe información exclusiva sobre venta de boletos, fechas y artistas.
+</p>
+
+<p style="color: #6c757d; margin-bottom: 1rem;">
+  Cuéntanos qué tipos de eventos te interesan (música, teatro, festivales, etc.) y tus preferencias para recomendarte las mejores opciones.
+</p>
+
+<p style="color: #6c757d; margin-bottom: 2rem;">
+  También puedes preguntar sobre promociones, paquetes especiales y experiencias VIP. ¡Nuestro equipo está listo para ayudarte a vivir momentos inolvidables!
+</p>
 
 
-    <p style="color: #6c757d; font-style: italic; margin-bottom: 1rem;">
-      ¿Quieres dominar las tecnologías del futuro? Llena este formulario para recibir info sobre nuestros cursos, talleres y bootcamps.
-    </p>
 
-    <p style="color: #6c757d; margin-bottom: 1rem;">
-      En el mensaje, cuéntanos qué áreas te interesan (IA, programación, ciberseguridad, etc.) y tu nivel actual para recomendarte lo mejor.
-    </p>
+  <div class="login-box">
+    <h2>Contáctanos</h2>
+    <form [formGroup]="contact" (ngSubmit)="onSubmit()" novalidate>
+      <div class="user-box">
+        <input id="email" type="email" formControlName="email" required>
+        <label for="email">Correo electrónico</label>
+      </div>
 
-    <p style="color: #6c757d; margin-bottom: 2rem;">
-      También puedes preguntar por fechas, modalidades o planes de estudio personalizados. ¡El equipo Andrakolis está listo para guiarte!
-    </p>
-<div class="login-box">
-  <h2>Contáctanos</h2>
-  <form [formGroup]="contact" (ngSubmit)="onSubmit()" novalidate>
-    <div class="user-box">
-      <input id="email" type="email" formControlName="email" required>
-      <label for="email">Correo electrónico</label>
-    </div>
+      <div class="user-box">
+        <input id="usuario" type="text" formControlName="usuario" required>
+        <label for="usuario">Nombre o alias</label>
+      </div>
 
-    <div class="user-box">
-      <input id="usuario" type="text" formControlName="usuario" required>
-      <label for="usuario">Nombre o alias</label>
-    </div>
+      <div class="user-box">
+        <textarea id="mensaje" formControlName="mensaje" required></textarea>
+        <label for="mensaje">Cuéntanos tus intereses</label>
+      </div>
 
-    <div class="user-box">
-      <textarea id="mensaje" formControlName="mensaje" required></textarea>
-      <label for="mensaje">Cuéntanos tus intereses</label>
-    </div>
-
-    <p style="font-size: 0.9rem; color: #888; margin: 0.5rem 0;">
-      Llena todos los campos para enviar
-    </p>
+      <p style="font-size: 0.9rem; color: #888; margin: 0.5rem 0;">
+        Por favor, completa todos los campos para enviar tu mensaje.
+      </p>
 
     <button type="submit" [disabled]="!contact.valid">Enviar</button>
   </form>
 </div>
 
 
-    <p *ngIf="submitted">
-      ¡Gracias por escribirnos, {{contact.get('usuario')?.value || 'genio/a'}}! Pronto te enviaremos toda la info a {{contact.get('email')?.value || 'tu correo'}}.
-    </p>
+   <p *ngIf="submitted">
+  ¡Gracias por contactarnos, {{contact.get('usuario')?.value || 'genio/a'}}! Pronto recibirás toda la información en {{contact.get('email')?.value || 'tu correo'}}.
+</p>
+
   </div>
 </section>
 

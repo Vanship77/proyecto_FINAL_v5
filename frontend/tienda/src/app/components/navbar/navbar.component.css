@@ -12,7 +12,7 @@ body {
   left: 0;
   right: 0;
   height: 60px;
-  background-color: #5c0b55; /* Morado Oscurito */
+  background-color: #5c0b55e7; /* Morado Oscurito */
   color: white;
   display: flex;
   align-items: center;
@@ -64,7 +64,7 @@ body {
 }
 
 .navbar-toggle:hover {
-  background: #b700ff; /* Morado oscuro */
+  background: #7b0486; /* Morado oscuro */
   transform: translateY(-1px);
 }
 
@@ -166,7 +166,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(34, 33, 33, 0.63);
   z-index: 1035;
   opacity: 0;
   visibility: hidden;

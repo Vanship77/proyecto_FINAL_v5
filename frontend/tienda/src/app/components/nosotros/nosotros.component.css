@@ -9,7 +9,7 @@
 /* HERO */
 .nosotros-hero {
   background: linear-gradient(135deg, #0d47a1, #c016b2);
-  color: #a817c5;
+  color: #ffffff;
   text-align: center;
   padding: 4rem 2rem;
   border-radius: 1.5rem;
@@ -24,7 +24,7 @@
 .nosotros-hero p {
   font-size: 1.3rem;
   font-weight: 500;
-  color: #a817c5;
+  color: #ffffff;
 }
 
 /* QUIÉNES SOMOS */
@@ -53,7 +53,7 @@
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 1rem;
-  color: #b0bec5;
+  color: #ffffff;
 }
 
 .nosotros-content .imagen {
@@ -91,7 +91,7 @@
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 1rem;
-  color: #b0bec5;
+  color: #ffffff;
 }
 
 /* VALORES */
@@ -114,13 +114,13 @@
 }
 
 .valores .card {
-  background: linear-gradient(145deg, #1e1e1e, #121212);
+  background: linear-gradient(145deg, #1e1e1e, #79069c);
   border: 1px solid #283593;
   border-radius: 1.5rem;
   padding: 2rem;
   width: 280px;
-  color: #ddd;
-  box-shadow: 0 10px 30px rgba(10, 30, 60, 0.7);
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(131, 3, 216, 0.7);
   transition: transform 0.5s ease, box-shadow 0.5s ease;
   transform-style: preserve-3d;
   perspective: 1000px;
@@ -164,13 +164,13 @@
   text-align: center;
   border-radius: 1.5rem;
   margin-bottom: 4rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 10px 30px rgba(90, 29, 131, 0.9);
 }
 
 .equipo-container .section-title {
   font-size: 2.5rem;
   margin-bottom: 2.5rem;
-  color: #42a5f5;
+  color: #2b2f33;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -188,7 +188,7 @@
   border-radius: 1.5rem;
   padding: 2rem 1.5rem;
   width: 250px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 8px 20px rgba(96, 18, 197, 0.8);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   text-align: center;
 }
@@ -215,12 +215,12 @@
 .equipo-container .card h3 {
   font-size: 1.3rem;
   margin-bottom: 0.3rem;
-  color: #e3f2fd;
+  color: #ffffff;
 }
 
 .equipo-container .card p {
   font-size: 1rem;
-  color: #90a4ae;
+  color: #ffffff;
   margin: 0;
 }
 
@@ -261,7 +261,7 @@
   max-width: 800px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease;
-  color: #cfd8dc;
+  color: #ffffff;
 }
 
 .por-que li i {
@@ -278,7 +278,7 @@
   border-radius: 1.5rem;
   box-shadow: 0 15px 30px rgba(25, 118, 210, 0.4);
   font-size: 1.1rem;
-  color: #ddd;
+  color: #ffffff;
 }
 
 .formulario-container h2 {

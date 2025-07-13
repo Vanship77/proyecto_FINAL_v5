@@ -1,0 +1,67 @@
+<app-navbar></app-navbar>
+
+<div class="perfil-container">
+  <div class="perfil-card">
+    <div class="perfil-imagen">
+        <img src="https://i.pinimg.com/736x/a4/3e/77/a43e7762e293aa68f812ccc5db2e0ad4.jpg" alt="Imagen de Perfil" />
+    </div>
+
+    <div class="perfil-info">
+      <h2>¡Hola, {{ usuario.nombre }}! 👋</h2>
+      <p class="email">{{ usuario.email }}</p>
+      <p class="tagline">Fanático de la buena música y experiencias inolvidables 🎶</p>
+
+      <div class="info-item"><strong>Miembro desde:</strong> {{ usuario.fechaRegistro | date:'longDate' }}</div>
+      <div class="info-item"><strong>Teléfono:</strong> {{ usuario.telefono ?? 'No registrado' }}</div>
+      <div class="info-item"><strong>Ubicación:</strong> {{ usuario.ubicacion ?? 'No especificada' }}</div>
+      <div class="info-item"><strong>Entradas compradas:</strong> {{ usuario.ticketsComprados!.length }}</div>
+      <div class="info-item"><strong>Eventos asistidos:</strong> {{ usuario.eventosAsistidos }}</div>
+      <div class="info-item"><strong>Eventos favoritos:</strong> {{ usuario.eventosFavoritos!.length }}</div>
+
+      <div class="acciones">
+        <button class="btn-editar" (click)="editarPerfil()">Editar Perfil</button>
+        <button class="btn-cerrar-sesion" (click)="cerrarSesion()">Cerrar Sesión</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notificaciones -->
+  <section class="notificaciones" *ngIf="usuario.notificaciones && usuario.notificaciones.length > 0">
+    <h3>Notificaciones</h3>
+    <ul>
+      <li *ngFor="let notificacion of usuario.notificaciones">
+        {{ notificacion }}
+      </li>
+    </ul>
+  </section>
+
+  <!-- Favoritos -->
+  <section class="favoritos" *ngIf="usuario.favoritos && usuario.favoritos.length > 0">
+    <h3>Tus Favoritos</h3>
+    <ul>
+      <li *ngFor="let fav of usuario.favoritos">{{ fav }}</li>
+    </ul>
+  </section>
+
+  <!-- Próximos eventos -->
+  <section class="eventos-personales" *ngIf="usuario.ticketsComprados && usuario.ticketsComprados.length > 0">
+    <h3>Próximos Eventos a los que asistirás</h3>
+    <div class="eventos-lista">
+      <div class="evento-card" *ngFor="let evento of usuario.ticketsComprados">
+        <img [src]="evento.imagen" alt="{{ evento.nombre }}">
+        <h4>{{ evento.nombre }}</h4>
+        <p>{{ evento.fecha | date:'mediumDate' }} - {{ evento.lugar }}</p>
+        <button class="btn-detalle" (click)="verDetalle(evento.id)">Ver Detalle</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Invitación -->
+  <section *ngIf="!usuario.ticketsComprados || usuario.ticketsComprados.length === 0" class="sin-eventos">
+    <h3>Aún no tienes entradas compradas</h3>
+    <p>Explora nuestros eventos y compra la entrada para tu próximo concierto favorito.</p>
+    <button class="btn-comprar" routerLink="/publicaciones2">Ver Eventos</button>
+  </section>
+</div>
+
+<app-footer></app-footer>

@@ -13,7 +13,6 @@ import { FooterComponent } from '../footer/footer.component';
   imports: [CommonModule, ReactiveFormsModule, NavbarComponent, FooterComponent]
 })
 export class RegistroComponent {
-  usuariosRegistrados: any[] = [];
   registro: FormGroup;
   previewImg: string | null = null;
   imagenFile: File | null = null;
@@ -22,7 +21,7 @@ export class RegistroComponent {
   constructor(private fb: FormBuilder, private userService: RegistroService) {
     this.registro = this.fb.group({
       firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
-      lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
+      lastName: ['', [Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
@@ -36,16 +35,6 @@ export class RegistroComponent {
     const pass = form.get('password')?.value;
     const confirm = form.get('confirmPassword')?.value;
     return pass === confirm ? null : { mismatch: true };
-  }
-
-  soloLetras(event: KeyboardEvent) {
-    const char = String.fromCharCode(event.charCode);
-    if (!/^[a-zA-ZÀ-ÿ\s]$/.test(char)) event.preventDefault();
-  }
-
-  soloNumeros(event: KeyboardEvent) {
-    const char = String.fromCharCode(event.charCode);
-    if (!/^\d$/.test(char)) event.preventDefault();
   }
 
   onFileSelected(event: any) {
@@ -71,21 +60,24 @@ export class RegistroComponent {
     if (this.registro.valid) {
       const formData = new FormData();
       Object.entries(this.registro.value).forEach(([key, value]) => {
-        if (key !== 'photoUrl') {
-          formData.append(key, value?.toString() ?? '');
+        if (key !== 'photoUrl' && value !== null && value !== undefined) {
+          formData.append(key, value.toString());
         }
       });
 
       if (this.imagenFile) {
-        formData.append('photo', this.imagenFile); // ✅ NOMBRE CORRECTO PARA MULTER
+        formData.append('photo', this.imagenFile);
       }
-      console.log(formData.values);
-      console.log(formData.entries);
-      console.log(formData.keys);
+
       this.userService.registrarUsuario(formData).subscribe(
-        
         res => alert('Registrado exitosamente 🎉'),
-        err => alert('Error al registrar 😓')
+        err => {
+          if (err.error?.code === 11000) {
+            alert('El email ya está registrado 😓');
+          } else {
+            alert('Error al registrar 😓');
+          }
+        }
       );
     } else {
       alert('Hay errores en el formulario ⚠️');

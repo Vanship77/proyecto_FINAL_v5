@@ -1,54 +1,70 @@
 <app-navbar></app-navbar>
 
+<div class="registro-container">
+  <div class="registro-card">
+    <h1>Crea una cuenta</h1>
+    <p class="subtitle">Es rápido y fácil.</p>
 
+    <form [formGroup]="registro" (ngSubmit)="enviar()" class="registro-form">
+      <div class="name-fields">
+        <div class="form-group">
+          <input type="text" formControlName="firstName" placeholder="Nombre" class="form-control" required>
+          <div *ngIf="registro.get('firstName')?.invalid && registro.get('firstName')?.touched" class="error-message">
+            <span *ngIf="registro.get('firstName')?.errors?.['required']">Nombre requerido</span>
+            <span *ngIf="registro.get('firstName')?.errors?.['pattern']">Solo se permiten letras</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" formControlName="lastName" placeholder="Apellidos (opcional)" class="form-control">
+          <div *ngIf="registro.get('lastName')?.invalid && registro.get('lastName')?.touched" class="error-message">
+            Solo se permiten letras
+          </div>
+        </div>
+      </div>
 
-<form [formGroup]="registro" (ngSubmit)="enviar()">
-  <h2 style="text-align: center; margin-top: 20px; color: #ffffff;">Formulario de Registro 📝</h2>
-  <input formControlName="firstName" placeholder="Nombres" (keypress)="soloLetras($event)">
-  <div *ngIf="registro.get('firstName')?.touched && registro.get('firstName')?.invalid" style="color:red;">
-    <small *ngIf="registro.get('firstName')?.errors?.['required']">Los nombres son obligatorios 🌟</small>
-    <small *ngIf="registro.get('firstName')?.errors?.['pattern']">Solo letras, sin números 🚫</small>
+      <div class="form-group">
+        <input type="email" formControlName="email" placeholder="Correo electrónico" class="form-control" required>
+        <div *ngIf="registro.get('email')?.invalid && registro.get('email')?.touched" class="error-message">
+          <span *ngIf="registro.get('email')?.errors?.['required']">Email requerido</span>
+          <span *ngIf="registro.get('email')?.errors?.['email']">Email inválido</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="password" formControlName="password" placeholder="Contraseña" class="form-control" required>
+        <div *ngIf="registro.get('password')?.invalid && registro.get('password')?.touched" class="error-message">
+          <span *ngIf="registro.get('password')?.errors?.['required']">Contraseña requerida</span>
+          <span *ngIf="registro.get('password')?.errors?.['minlength']">Mínimo 6 caracteres</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="password" formControlName="confirmPassword" placeholder="Confirmar contraseña" class="form-control" required>
+        <div *ngIf="registro.hasError('mismatch') && registro.get('confirmPassword')?.touched" class="error-message">
+          Las contraseñas no coinciden
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" id="photoUpload" style="display: none;">
+        <label for="photoUpload" class="upload-btn">Subir foto de perfil (opcional)</label>
+        <div *ngIf="previewImg" class="image-preview">
+          <img [src]="previewImg" alt="Preview">
+        </div>
+        <div *ngIf="imagenError" class="error-message">{{imagenError}}</div>
+      </div>
+
+      <p class="terms-text">
+        Al hacer clic en Registrarte, aceptas nuestras <a href="#">Condiciones</a> y <a href="#">Política de privacidad</a>.
+      </p>
+
+      <button type="submit" class="submit-btn" [disabled]="!registro.valid">Registrarte</button>
+    </form>
+
+    <div class="login-link">
+      ¿Ya tienes una cuenta? <a routerLink="/login">Iniciar sesión</a>
+    </div>
   </div>
-
-  <input formControlName="lastName" placeholder="Apellidos" (keypress)="soloLetras($event)">
-  <div *ngIf="registro.get('lastName')?.touched && registro.get('lastName')?.invalid" style="color:red;">
-    <small *ngIf="registro.get('lastName')?.errors?.['required']">Los apellidos son obligatorios 🌟</small>
-    <small *ngIf="registro.get('lastName')?.errors?.['pattern']">Solo letras, sin números 🚫</small>
-  </div>
-
-  <input formControlName="email" type="email" placeholder="Correo">
-  <div *ngIf="registro.get('email')?.touched && registro.get('email')?.invalid" style="color:red;">
-    <small *ngIf="registro.get('email')?.errors?.['required']">Correo obligatorio 📧</small>
-    <small *ngIf="registro.get('email')?.errors?.['email']">Correo inválido 😵‍💫</small>
-  </div>
-
-  <input formControlName="password" type="password" placeholder="Contraseña">
-  <div *ngIf="registro.get('password')?.touched && registro.get('password')?.invalid" style="color:red;">
-    <small *ngIf="registro.get('password')?.errors?.['required']">Contraseña obligatoria 🔒</small>
-    <small *ngIf="registro.get('password')?.errors?.['minlength']">Mínimo 6 caracteres 🔑</small>
-  </div>
-
-  <input formControlName="confirmPassword" type="password" placeholder="Confirmar contraseña">
-  <div *ngIf="registro.hasError('mismatch') && registro.get('confirmPassword')?.touched" style="color:red;">
-    <small>Las contraseñas no coinciden ❌</small>
-  </div>
-
-  <!-- Subir foto -->
-  <label>Subir foto:</label>
-  <input type="file" (change)="onFileSelected($event)" accept="image/png, image/jpeg">
-  <div *ngIf="imagenError" style="color:red;">{{ imagenError }}</div>
-
-  <div *ngIf="previewImg" style="margin-top:10px;">
-    <img [src]="previewImg" alt="Foto previa" style="width: 120px; height: auto; border-radius: 6px; border: 1px solid #ccc;">
-  </div>
-
-  <button type="submit" [disabled]="registro.invalid">Enviar</button>
-</form>
-
-<!-- Lista de usuarios (opcional) -->
-<div *ngIf="usuariosRegistrados.length > 0">
-  <h3>Usuarios registrados:</h3>
-  <pre>{{ usuariosRegistrados | json }}</pre>
 </div>
 
 <app-footer></app-footer>

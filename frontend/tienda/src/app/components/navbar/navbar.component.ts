@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.services';
 import { Subscription } from 'rxjs';
 import { NgIf } from '@angular/common';
@@ -36,8 +36,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private setupAuthSubscriptions(): void {
     this.authSub = this.auth.isLoggedIn$.subscribe(status => {
       this.isLoggedIn = status;
-
-      // Validar si el usuario es admin cuando cambia el estado
       this.updateAdminStatus();
 
       if (!status) {
@@ -49,9 +47,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.userSub = this.auth.userData$.subscribe(userData => {
       this.userName = userData?.name || null;
       this.authProvider = userData?.provider || null;
-      this.role = userData?.role || null; // ← Aquí obtienes el role
-
-      // Actualizar estado admin cuando cambian los datos del usuario
+      this.role = userData?.role || null;
       this.updateAdminStatus();
     });
   }
@@ -67,30 +63,32 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.isAdmin = false;
   }
 
-  // Método helper para verificar permisos de admin
-  isUserAdmin(): boolean {
-    return this.isLoggedIn && this.role === 'admin';
-  }
-
-  // Método para acciones que requieren permisos de admin
-  executeAdminAction(action: () => void): void {
-    if (this.isUserAdmin()) {
-      action();
-    } else {
-      console.warn('Acceso denegado: Se requieren permisos de administrador');
-      // Opcional: mostrar mensaje de error
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    
+    // Si el clic no fue en un botón de toggle ni dentro de un sidebar
+    if (!target.closest('.navbar-toggle') && 
+        !target.closest('.sidebar') &&
+        !target.closest('.sidebar-overlay') &&
+        (this.sidebarOpen || this.sidebar2Open)) {
+      this.closeAllSidebars();
     }
   }
 
   closeAllSidebars(): void {
     this.sidebarOpen = false;
     this.sidebar2Open = false;
+    document.body.classList.remove('sidebar-open');
   }
 
   toggleSidebar(): void {
     this.sidebarOpen = !this.sidebarOpen;
     if (this.sidebarOpen) {
       this.sidebar2Open = false;
+      document.body.classList.add('sidebar-open');
+    } else {
+      document.body.classList.remove('sidebar-open');
     }
   }
 
@@ -98,6 +96,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.sidebar2Open = !this.sidebar2Open;
     if (this.sidebar2Open) {
       this.sidebarOpen = false;
+      document.body.classList.add('sidebar-open');
+    } else {
+      document.body.classList.remove('sidebar-open');
     }
   }
 
@@ -112,7 +113,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
-
     this.auth.logout(); 
   }
 
@@ -124,12 +124,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Método para navegar al panel de admin (solo para admins)
   goToAdminPanel(): void {
-    this.executeAdminAction(() => {
+    if (this.isUserAdmin()) {
       this.router.navigate(['/admin']);
       this.closeAllSidebars();
-    });
+    }
+  }
+
+  isUserAdmin(): boolean {
+    return this.isLoggedIn && this.role === 'admin';
   }
 
   ngOnDestroy() {

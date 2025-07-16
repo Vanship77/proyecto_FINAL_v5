@@ -1,92 +1,166 @@
 <app-navbar></app-navbar>
 
-<div class="saber-mas-hero text-center text-white d-flex align-items-center justify-content-center">
-    <div>
-      <h1 class="display-4 fw-bold">Descubre tus Próximas Aventuras</h1>
-      <p class="lead">Sumérgete en experiencias inolvidables y momentos únicos que transformarán cada evento en un recuerdo imborrable.</p>
-    </div>
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-content">
+    <h1 class="hero-title">Vive Experiencias Extraordinarias</h1>
+    <p class="hero-subtitle">Descubre eventos que transformarán tus momentos en recuerdos inolvidables</p>
+    <button class="hero-cta">Explora Eventos</button>
+  </div>
+  <div class="hero-overlay"></div>
+</section>
 
-</div>
-
-<div class="container my-5">
-  <h2 class="text-center mb-4">¿Por qué elegir nuestros eventos?</h2>
-
-<div class="d-flex justify-content-center flex-wrap gap-4">
-  <div class="flip-card">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <p class="title">Innovación</p>
-        <p>Transformamos cada evento con tecnología de última generación</p>
-      </div>
-      <div class="flip-card-back">
-        <p class="title">Tecnología de Punta</p>
-        <p>Experiencias inmersivas que marcan tendencia y capturan emociones</p>
-      </div>
-    </div>
+<!-- Features Section -->
+<section class="features-section">
+  <div class="section-header">
+    <h2>¿Por Qué Elegirnos?</h2>
+    <p>Innovación, pasión y dedicación en cada detalle</p>
   </div>
 
-  <div class="flip-card">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <p class="title">Experiencia</p>
-        <p>Más de 500 eventos exitosos avalan nuestra trayectoria</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="bi bi-lightning-charge"></i>
       </div>
-      <div class="flip-card-back">
-        <p class="title">Profesionales Expertos</p>
-        <p>Un equipo dedicado que convierte tu visión en realidad</p>
+      <h3>Tecnología Innovadora</h3>
+      <p>Utilizamos lo último en producción audiovisual para crear experiencias inmersivas</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="bi bi-stars"></i>
       </div>
+      <h3>Calidad Premium</h3>
+      <p>Estándares de producción que superan expectativas en cada evento</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="bi bi-heart"></i>
+      </div>
+      <h3>Pasión por Detalles</h3>
+      <p>Cuidamos cada aspecto para crear momentos perfectamente memorables</p>
     </div>
   </div>
+</section>
 
-  <div class="flip-card">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <p class="title">Conexión</p>
-        <p>Nos importas tú, cada detalle hecho a tu medida</p>
-      </div>
-      <div class="flip-card-back">
-        <p class="title">Atención Personalizada</p>
-        <p>Adaptamos cada evento a tu estilo y necesidades</p>
+<!-- Flip Cards Section -->
+<section class="flip-cards-section">
+  <div class="section-header">
+    <h2>Nuestra Filosofía</h2>
+    <p>Conoce los principios que guían nuestro trabajo</p>
+  </div>
+
+  <div class="flip-cards-container">
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <i class="bi bi-people"></i>
+          <h3>Conexión Humana</h3>
+        </div>
+        <div class="flip-card-back">
+          <p>Creemos en eventos que unen personas y crean comunidades</p>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <i class="bi bi-lightbulb"></i>
+          <h3>Innovación Constante</h3>
+        </div>
+        <div class="flip-card-back">
+          <p>Siempre buscamos nuevas formas de sorprender a nuestros asistentes</p>
+        </div>
+      </div>
+    </div>
 
-  <hr class="my-5" />
-
-  <h3 class="text-center mb-4">Preguntas Frecuentes</h3>
-  <div class="accordion" id="faqAccordion">
-    <div class="accordion-item" *ngFor="let faq of faqCards; let i = index">
-      <h2 class="accordion-header" [id]="'heading' + i">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-          [attr.data-bs-target]="'#collapse' + i" [attr.aria-expanded]="i === 0"
-          [attr.aria-controls]="'collapse' + i">
-          {{ faq.pregunta }}
-        </button>
-      </h2>
-      <div [id]="'collapse' + i" class="accordion-collapse collapse" [class.show]="i === 0"
-        [attr.aria-labelledby]="'heading' + i" data-bs-parent="#faqAccordion">
-        <div class="accordion-body">
-          {{ faq.respuesta }}
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <i class="bi bi-shield-check"></i>
+          <h3>Compromiso Total</h3>
+        </div>
+        <div class="flip-card-back">
+          <p>Tu satisfacción es nuestra prioridad número uno</p>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <hr class="my-5" />
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="section-header">
+    <h2>Preguntas Frecuentes</h2>
+    <p>Todo lo que necesitas saber sobre nuestros servicios</p>
+  </div>
 
-  <h3 class="text-center mb-4">Testimonios</h3>
-  <div class="d-flex justify-content-center flex-wrap gap-4">
-    <div class="card testimonial-card" *ngFor="let testimonio of testimonios">
-      <div class="align">
-        <span class="red"></span>
-        <span class="yellow"></span>
-        <span class="green"></span>
+  <div class="faq-container">
+    <h3>Servicios Generales</h3>
+    <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+      <button class="faq-question" (click)="toggleFaq(i, 'faqs')">
+        <span>{{faq.pregunta}}</span>
+        <i class="bi" [ngClass]="{'bi-chevron-down': !faq.active, 'bi-chevron-up': faq.active}"></i>
+      </button>
+      <div class="faq-answer" [class.active]="faq.active">
+        <p>{{faq.respuesta}}</p>
       </div>
-      <h1>{{ testimonio.autor }}</h1>
-      <p>{{ testimonio.texto }}</p>
+    </div>
+
+    <h3>Logística de Eventos</h3>
+    <div class="faq-item" *ngFor="let faq of faqCards; let i = index">
+      <button class="faq-question" (click)="toggleFaq(i, 'faqCards')">
+        <span>{{faq.pregunta}}</span>
+        <i class="bi" [ngClass]="{'bi-chevron-down': !faq.active, 'bi-chevron-up': faq.active}"></i>
+      </button>
+      <div class="faq-answer" [class.active]="faq.active">
+        <p>{{faq.respuesta}}</p>
+      </div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+  <div class="section-header">
+    <h2>Lo Que Dicen Nuestros Clientes</h2>
+    <p>Experiencias reales, resultados extraordinarios</p>
+  </div>
+
+  <div class="testimonials-slider">
+    <div class="testimonial-card" *ngFor="let testimonio of testimonios; let i = index" 
+         [class.active]="currentTestimonial === i">
+      <div class="testimonial-content">
+        <div class="testimonial-quote">
+          <i class="bi bi-quote"></i>
+        </div>
+        <p class="testimonial-text">"{{testimonio.texto}}"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">
+            <i class="bi bi-person-circle"></i>
+          </div>
+          <div class="author-info">
+            <h4>{{testimonio.autor}}</h4>
+            <p>{{testimonio.cargo}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="slider-controls">
+      <button (click)="prevTestimonial()"><i class="bi bi-chevron-left"></i></button>
+      <div class="slider-dots">
+        <button *ngFor="let t of testimonios; let i = index" 
+                (click)="goToTestimonial(i)"
+                [class.active]="currentTestimonial === i">
+          <span class="sr-only">Testimonio {{i+1}}</span>
+        </button>
+      </div>
+      <button (click)="nextTestimonial()"><i class="bi bi-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
 <app-footer></app-footer>

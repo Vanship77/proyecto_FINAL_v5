@@ -1,136 +1,175 @@
-.saber-mas-hero {
-  height: 60vh;
-  background-color: #222;
-  background-image: url('https://www.iniseg.es/blog/seguridad/wp-content/uploads/2018/06/Blog-Aucal-41-820x410.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+/* Estilos Base */
+:root {
+  --purple-dark: #5c0b55;
+  --purple-medium: #7a2d72;
+  --purple-light: #98508f;
+  --purple-extra-light: #c67bbe;
+  --accent-color: #e8a5e1;
+  --white: #ffffff;
+  --black: #121212;
+  --gray-light: #f5f5f5;
+}
+
+/* Hero Section */
+.hero-section {
   position: relative;
-  padding: 2rem;
+  height: 70vh;
+  min-height: 500px;
+  background: url('https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  text-shadow: 1px 1px 5px rgb(0, 0, 0);
-}
-
-/* Capa oscura para mejorar legibilidad del texto */
-.saber-mas-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(34, 34, 34, 0.7); /* negro semi-transparente */
-  z-index: 0;
-}
-
-.saber-mas-hero > * {
-  position: relative;
-  z-index: 1;
-}
-
-
-/* Benefit boxes */
-.benefit-box {
-  padding: 1rem;
-  border: 1px solid #555; /* gris plomo oscuro */
-  border-radius: 12px;
-  background-color: #2e2e2e; /* gris plomo */
-  color: #d1c4e9; /* morado claro para texto */
-}
-
-.benefit-box .icon {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: #9575cd; /* morado medio */
-}
-
-/* Testimonio Card (Uiverse.io style) */
-.card {
-  width: 250px;
-  min-height: 120px;
-  padding: 1rem;
-  background: rgba(50, 50, 70, 0.85); /* morado oscuro translúcido */
-  border-radius: 12px;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  border-bottom: 3px solid rgba(149, 117, 205, 0.4); /* borde morado */
-  border-left: 2px rgba(149, 117, 205, 0.3) outset;
-  box-shadow: 0 8px 30px rgba(40, 20, 60, 0.5);
-  transform: skewX(10deg);
-  transition: 0.4s ease;
+  color: var(--white);
   overflow: hidden;
-  color: #d1c4e9; /* morado claro */
 }
 
-.card:hover {
-  transform: skew(0deg);
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(92, 11, 85, 0.9), rgba(122, 45, 114, 0.8));
 }
 
-.card h1 {
+.hero-content {
+  position: relative;
+  z-index: 2;
   text-align: center;
-  margin: 1.3rem 0;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
+
+.hero-cta {
+  background: var(--accent-color);
+  color: var(--purple-dark);
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(232, 165, 225, 0.4);
+}
+
+.hero-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(232, 165, 225, 0.6);
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 20px;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  color: var(--purple-dark);
+  margin-bottom: 1rem;
+}
+
+.section-header p {
   font-size: 1.2rem;
-  color: #b39ddb; /* morado vibrante */
-  text-shadow: 0 0 10px rgba(179, 157, 219, 0.6);
+  color: var(--purple-medium);
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-.card p {
-  font-size: 0.95rem;
+/* Features Section */
+.features-section {
+  padding: 5rem 2rem;
+  background: var(--gray-light);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: var(--white);
+  padding: 2.5rem 2rem;
+  border-radius: 15px;
   text-align: center;
-  color: #c5cae9; /* morado muy claro */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(92, 11, 85, 0.1);
 }
 
-
-.align {
-  padding: 0.5rem 1rem;
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  align-self: flex-start;
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(92, 11, 85, 0.15);
 }
 
-.red, .yellow, .green {
-  width: 10px;
-  height: 10px;
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, var(--purple-medium), var(--purple-light));
   border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 2rem;
 }
 
-.red {
-  background-color: #ab47bc; /* morado intenso en vez de rojo */
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--purple-dark);
 }
 
-.yellow {
-  background-color: #7e57c2; /* morado medio en vez de amarillo */
+.feature-card p {
+  color: #555;
+  line-height: 1.6;
 }
 
-.green {
-  background-color: #5e35b1; /* morado oscuro en vez de verde */
+/* Flip Cards Section */
+.flip-cards-section {
+  padding: 5rem 2rem;
+  background: var(--white);
+}
+
+.flip-cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .flip-card {
-  background-color: transparent;
-  width: 190px;
-  height: 254px;
+  width: 300px;
+  height: 350px;
   perspective: 1000px;
-  font-family: sans-serif;
-}
-
-.title {
-  font-size: 1.2em;
-  font-weight: 900;
-  text-align: center;
-  margin: 0;
-  color: #d1c4e9;
-  text-shadow: 1px 1px 3px #000000cc;
 }
 
 .flip-card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
+  transition: transform 0.6s;
   transform-style: preserve-3d;
 }
 
@@ -138,93 +177,225 @@
   transform: rotateY(180deg);
 }
 
-.flip-card-front,
-.flip-card-back {
-  box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.5);
+.flip-card-front, .flip-card-back {
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border: 1px solid #6a1b9a; /* morado oscuro */
-  border-radius: 1rem;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(92, 11, 85, 0.1);
 }
 
 .flip-card-front {
-  background: linear-gradient(120deg, #311b92 60%, #512da8 88%, #673ab7 40%, #7e57c2 48%);
-  color: #d1c4e9;
+  background: linear-gradient(135deg, var(--purple-dark), var(--purple-medium));
+  color: var(--white);
+}
+
+.flip-card-front i {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.flip-card-front h3 {
+  font-size: 1.8rem;
+  text-align: center;
 }
 
 .flip-card-back {
-  background: linear-gradient(120deg, #7e57c2 30%, #9575cd 88%, #b39ddb 40%, #d1c4e9 78%);
-  color: white;
+  background: var(--white);
+  color: var(--purple-dark);
   transform: rotateY(180deg);
+  border: 2px solid var(--purple-light);
 }
-/* Responsive styles */
 
+.flip-card-back p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: 5rem 2rem;
+  background: var(--gray-light);
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(92, 11, 85, 0.1);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.5rem;
+  background: var(--white);
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--purple-dark);
+  transition: background 0.3s ease;
+}
+
+.faq-question:hover {
+  background: #f9f9f9;
+}
+
+.faq-question i {
+  transition: transform 0.3s ease;
+}
+
+.faq-question.active i {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 1.5rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  background: var(--white);
+}
+
+.faq-answer.open {
+  padding: 1.5rem;
+  max-height: 500px;
+}
+
+.faq-answer p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+  padding: 5rem 2rem;
+  background: var(--white);
+}
+
+.testimonials-slider {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  flex: 1 1 350px;
+  max-width: 400px;
+  background: var(--gray-light);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-10px);
+}
+
+.testimonial-quote {
+  font-size: 3rem;
+  color: var(--purple-light);
+  opacity: 0.3;
+  margin-bottom: 1rem;
+}
+
+.testimonial-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.author-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--purple-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 1.5rem;
+}
+
+.author-info h4 {
+  color: var(--purple-dark);
+  margin-bottom: 0.2rem;
+}
+
+.author-info p {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
-  .saber-mas-hero {
-    height: auto;
-    padding: 1.5rem;
-    flex-direction: column;
-    text-align: center;
+  .hero-title {
+    font-size: 2.5rem;
   }
-
-  .benefit-box {
-    margin-bottom: 1rem;
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
   }
-
-  .card {
-    width: 90vw;
-    min-height: auto;
-    padding: 1.2rem;
-    transform: none;
-    margin: 1rem auto;
+  
+  .section-header h2 {
+    font-size: 2rem;
   }
-
-  .card:hover {
-    transform: none;
-  }
-
+  
   .flip-card {
-    width: 90vw;
-    height: auto;
-    margin: 1rem auto;
-  }
-
-  .flip-card-front,
-  .flip-card-back {
-    position: relative;
     width: 100%;
-    height: auto;
-    border-radius: 1rem;
-  }
-
-  .flip-card-inner {
-    transform: none !important;
+    max-width: 350px;
   }
 }
 
 @media (max-width: 480px) {
-  .saber-mas-hero {
-    padding: 1rem;
+  .hero-section {
+    height: 60vh;
+    min-height: 400px;
   }
-
-  .card h1 {
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
     font-size: 1rem;
   }
-
-  .card p {
-    font-size: 0.85rem;
+  
+  .section-header h2 {
+    font-size: 1.8rem;
   }
-
-  .benefit-box {
-    padding: 0.8rem;
-    font-size: 0.9rem;
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .testimonial-card {
+    flex: 1 1 100%;
   }
 }

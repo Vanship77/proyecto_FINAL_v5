@@ -1,200 +1,224 @@
-/* Estilo principal del pie de página */
+/* PALETA MORADA #5c0b55 */
+:root {
+  --purple-dark: #5c0b55;     /* Color base solicitado */
+  --purple-medium: #7a2d72;   /* +20% claridad */
+  --purple-light: #98508f;    /* +40% claridad */
+  --purple-extra-light: #c67bbe; /* +60% claridad */
+  --accent-color: #e8a5e1;    /* +80% claridad (acentos) */
+  --white: #ffffff;
+  --black: #121212;
+}
+
+/* ESTRUCTURA PRINCIPAL */
 .footer {
-  background-color: #5c0b55; /* Color de fondo del pie de página */
-  color: #ffffff; /* Color del texto */
-  padding: 0.8rem 1rem; /* Espaciado dentro del pie de página */
-  display: flex; /* Usamos flexbox para organizar el contenido */
-  flex-wrap: wrap; /* Permite que los elementos se acomoden en múltiples líneas */
-  justify-content: space-between; /* Distribuye el espacio entre los elementos */
-  font-family: 'Work Sans', sans-serif; /* Tipo de letra */
-  gap: 2rem; /* Espaciado entre las columnas */
-  position: relative; /* Posición relativa para que se puedan usar elementos posicionados dentro */
-  flex-direction: row; /* Organiza los elementos en una fila */
+  position: relative;
+  background: linear-gradient(135deg, var(--purple-dark), var(--purple-medium));
+  box-shadow: inset 0 0 100px rgba(92, 11, 85, 0.9);
+  color: var(--white);
+  padding: 5rem 2rem 2rem;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
 }
 
-/* Contenedor de la sección izquierda del pie de página */
-.footer-left,
-.footer-center,
-.footer-right {
-  flex: 1 1 280px; /* Define el tamaño flexible, la base es 280px */
-  min-width: 250px; /* Establece un ancho mínimo */
-  display: flex; /* Usamos flexbox dentro de cada sección */
-  flex-direction: column; /* Organiza los elementos de forma vertical */
-  justify-content: center; /* Centra los elementos verticalmente */
+.footer-gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 70% 30%, var(--purple-extra-light), transparent 70%);
+  opacity: 0.3;
+  z-index: 1;
 }
 
-/* Contenedor de la sección de la información de la empresa */
-.about-container {
-  display: flex; /* Flexbox para organizar los elementos */
-  flex-direction: column; /* Organiza los elementos de forma vertical */
-  justify-content: center; /* Centra verticalmente */
-  height: 100%; /* Asegura que ocupe todo el alto disponible */
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  position: relative;
+  z-index: 2;
 }
 
-/* Estilo del párrafo principal de la sección sobre la empresa */
-.about {
-  font-size: 1rem; /* Tamaño de la fuente */
-  line-height: 1.6; /* Altura de la línea para mayor legibilidad */
+/* SECCIONES */
+.footer-section {
+  margin-bottom: 2rem;
 }
 
-/* Definición de pesos de fuente para facilitar el uso de clases de peso de fuente */
-.work-sans-400 { font-weight: 400; } /* Peso de fuente normal */
-.work-sans-600 { font-weight: 600; } /* Peso de fuente seminegro */
-.work-sans-700 { font-weight: 700; } /* Peso de fuente negrita */
-
-/* Estilos de los iconos de redes sociales */
-.icons {
-  margin-top: 0.7rem; /* Espaciado superior */
+.section-title {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+  color: var(--accent-color);
+  position: relative;
 }
 
-/* Estilos para los enlaces de redes sociales */
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(to right, var(--accent-color), var(--purple-light));
+  box-shadow: 0 0 10px var(--purple-extra-light);
+}
+
+/* SECCIÓN ABOUT */
+.logo-container {
+  margin-bottom: 1.5rem;
+}
+
+.footer-logo {
+  height: 80px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.4s ease;
+}
+
+.footer-logo:hover {
+  transform: scale(1.1) rotate(-2deg);
+}
+
+.footer-about {
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.brand-name {
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
 .social-icon {
-  display: inline-block; /* Los iconos se mostrarán en línea */
-  font-size: 1.4rem; /* Tamaño del icono */
-  margin-right: 10px; /* Espaciado entre los iconos */
-  transition: transform 0.3s ease, color 0.3s ease; /* Transición suave para el efecto de hover */
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
 }
 
-/* Efecto de hover para los iconos de redes sociales */
 .social-icon:hover {
-  transform: scale(1.2) rotate(5deg); /* Aumenta el tamaño y rota ligeramente el icono */
-  color: #FFD700; /* Cambia el color a dorado al pasar el cursor */
+  background: linear-gradient(to bottom, var(--purple-light), var(--accent-color));
+  color: var(--purple-dark);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 5px 15px rgba(232, 165, 225, 0.4);
 }
 
-/* Estilos para la sección central del pie de página (contacto) */
-.footer-center {
-  display: flex; /* Usamos flexbox */
-  flex-direction: column; /* Organiza los elementos de forma vertical */
-  align-items: center;  /* Centra horizontalmente */
-  justify-content: center; /* Centra verticalmente */
-  text-align: center; /* Alineación del texto */
+/* SECCIÓN CONTACTO */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
-/* Estilos para los iconos y texto dentro de la sección central */
-.footer-center i,
-.footer-center div {
-  font-size: 1rem; /* Tamaño de la fuente */
-  margin-bottom: 0.5rem; /* Espaciado inferior */
-  display: flex; /* Flexbox para organizar el texto e icono */
-  align-items: center; /* Alinea los iconos y texto verticalmente */
-  justify-content: center;  /* Centra los iconos con el texto */
-  gap: 8px; /* Espaciado entre el icono y el texto */
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
 }
 
-
-
-
-/* Estilos para la sección derecha del pie de página */
-.footer-right {
-  text-align: center; /* Centra el texto */
-  display: flex; /* Flexbox */
-  flex-direction: column; /* Organiza los elementos de forma vertical */
-  align-items: center; /* Centra los elementos horizontalmente */
-  justify-content: center; /* Centra los elementos verticalmente */
+.contact-item i {
+  color: var(--accent-color);
+  font-size: 1.1rem;
+  margin-top: 3px;
 }
 
-/* Estilo para la imagen del logo */
-.footer-right img {
-  height: 90px; /* Altura de la imagen */
-  margin-bottom: 0.8rem; /* Espaciado inferior */
-  transition: transform 0.4s ease; /* Transición suave para el efecto hover */
+/* SECCIÓN ENLACES */
+.footer-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* Efecto de hover para la imagen */
-.footer-right img:hover {
-  transform: scale(1.05) rotate(1deg); /* Aumenta ligeramente el tamaño y rota la imagen */
+.menu-link {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1rem;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
-/* Estilos para el menú de navegación en el pie de página */
-.menu {
-  display: flex; /* Flexbox */
-  justify-content: center; /* Centra los elementos */
-  align-items: center; /* Alinea los elementos verticalmente */
-  flex-wrap: wrap; /* Permite que los elementos se acomoden en varias líneas */
-  gap: 10px; /* Espaciado entre los enlaces */
-  margin-top: 0.5rem; /* Espaciado superior */
+.menu-link::before {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width 0.3s ease;
 }
 
-/* Estilos para los enlaces del menú */
-.menu a {
-  font-size: 1rem; /* Tamaño de la fuente */
-  font-weight: 500; /* Peso de la fuente */
-  color: #ffffff; /* Color de texto blanco */
-  text-decoration: none; /* Elimina el subrayado */
-  position: relative; /* Posición relativa para los efectos */
-  padding: 5px 8px; /* Espaciado alrededor de los enlaces */
-  transition: color 0.3s ease; /* Transición suave para el color */
+.menu-link:hover {
+  color: var(--accent-color);
+  padding-left: 8px;
 }
 
-/* Estilo del efecto subrayado de los enlaces */
-.menu a::after {
-  content: ""; /* El contenido vacío genera la línea subrayada */
-  display: block; /* Hace que sea un bloque */
-  width: 0%; /* La línea comienza con 0% de ancho */
-  height: 2px; /* Altura de la línea */
-  background-color: #FFD700; /* Color dorado de la línea */
-  transition: width 0.3s ease; /* Transición suave para el cambio de ancho */
-  margin-top: 3px; /* Espaciado superior de la línea */
+.menu-link:hover::before {
+  width: 100%;
 }
 
-/* Efecto hover para los enlaces del menú */
-.menu a:hover {
-  color: #FFD700; /* Cambia el color del texto a dorado */
-}
-
-/* Efecto hover para la línea subrayada */
-.menu a:hover::after {
-  width: 100%; /* Expande la línea al 100% del ancho del enlace */
-}
-
-/* Estilos para el separador entre enlaces */
-.separator {
-  color: #999; /* Color gris claro */
-  font-weight: 400; /* Peso de la fuente normal */
-  font-size: 1rem; /* Tamaño de la fuente */
-  user-select: none; /* Desactiva la selección de texto */
-}
-
-/* Estilos para la sección inferior del pie de página */
+/* FOOTER INFERIOR */
 .footer-bottom {
-  width: 100%; /* Ancho completo */
-  text-align: center; /* Centra el texto */
-  margin-top: 2rem; /* Espaciado superior */
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 3rem;
 }
 
-/* Estilo para la línea divisoria entre el contenido y el texto final */
-.footer-line {
-  border: none; /* Sin borde */
-  border-top: 1px solid #444; /* Borde superior gris oscuro */
-  margin: 0 auto 1rem auto; /* Márgenes automáticos para centrar */
-  width: 80%; /* El borde tiene el 80% del ancho del contenedor */
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--purple-extra-light), transparent);
+  margin: 0 auto 1.5rem;
+  width: 80%;
 }
 
-/* Estilo del texto final con derechos reservados */
-.name {
-  font-size: 0.9rem; /* Tamaño de la fuente */
-  color: #ffffff; /* Color blanco */
+.copyright {
+  font-size: 0.9rem;
 }
 
-/* Media query para dispositivos con un ancho máximo de 768px (pantallas pequeñas) */
+.copyright span {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .footer {
-    flex-direction: column; /* Cambia la dirección de los elementos a columna */
-    align-items: flex-start; /* Alinea los elementos al inicio */
-    text-align: left; /* Alinea el texto a la izquierda */
+    padding: 3rem 1.5rem;
   }
-
-  .footer-right {
-    text-align: center; /* Centra el texto */
-    margin-top: 1.5rem; /* Espaciado superior */
-    align-items: center; /* Centra los elementos */
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
   }
-
-  .footer-center {
-    margin-top: 1.5rem; /* Espaciado superior */
+  
+  .contact-item {
+    justify-content: center;
   }
-
-  .footer-bottom {
-    text-align: center; /* Centra el texto */
+  
+  .footer-menu {
+    align-items: center;
+  }
+  
+  .section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
   }
 }

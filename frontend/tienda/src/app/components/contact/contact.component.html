@@ -1,62 +1,66 @@
 <app-navbar></app-navbar>
-<section style="display: flex; max-width: 1000px; margin: 2rem auto; font-family: 'Work Sans', sans-serif; gap: 2rem;">
+
+<section class="contact-section">
   <!-- Imagen a la izquierda -->
-  <div style="flex: 2; display: flex; align-items: center; justify-content: flex-start; margin-left: -40px;">
-  <img src="https://i.pinimg.com/736x/75/fd/42/75fd42e5295799726aa9f1cbd40ec71a.jpg" 
-       alt="Tech Andrakolis" 
-       style="width: 600px; border-radius: 12px;" />
-</div>
+  <div class="contact-image">
+    <img src="https://i.pinimg.com/736x/75/fd/42/75fd42e5295799726aa9f1cbd40ec71a.jpg" 
+         alt="Tech Andrakolis" />
+  </div>
 
+  <!-- Contenido a la derecha -->
+  <div class="contact-content">
+    <div class="contact-header">
+      <h1>Puede comunicarse con nosotros mediante los siguientes métodos:</h1>
+    </div>
+    
+    <div class="contact-methods">
+      <div class="contact-brand">
+        <h2>NØRVAK</h2>
+        <div class="social-contact">
+          <p><i class="fab fa-instagram"></i> &#64;Nørvak</p>
+          <p><i class="fas fa-envelope"></i> info&#64;nørvak.com.ec</p>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <h2>DÉJANOS TU COMENTARIO</h2>
+        <form [formGroup]="contact" (ngSubmit)="onSubmit()" novalidate>
+          <div class="form-group">
+            <input type="text" id="usuario" formControlName="usuario" placeholder="Ingrese su nombre" required>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" formControlName="email" placeholder="Ingrese su Email" required>
+          </div>
+          <div class="form-group">
+            <textarea id="mensaje" formControlName="mensaje" placeholder="Mensaje..." rows="4" required></textarea>
+          </div>
 
-  <!-- Formulario a la derecha -->
-  <div style="flex: 1;">
-  <h1 style="color: #6807ad; margin-top: 3rem; margin-bottom: 1.5rem;">Contáctanos</h1>
-
-  <p style="color: #000000; font-style: italic; margin-bottom: 1rem;">
-  ¿Quieres estar al tanto de los mejores conciertos y eventos en vivo? Completa el formulario y recibe información exclusiva sobre venta de boletos, fechas y artistas.
-</p>
-
-<p style="color: #000000; margin-bottom: 1rem;">
-  Cuéntanos qué tipos de eventos te interesan (música, teatro, festivales, etc.) y tus preferencias para recomendarte las mejores opciones.
-</p>
-
-<p style="color: #000000; margin-bottom: 2rem;">
-  También puedes preguntar sobre promociones, paquetes especiales y experiencias VIP. ¡Nuestro equipo está listo para ayudarte a vivir momentos inolvidables!
-</p>
-
-
-
-  <div class="login-box">
-    <h2>Contáctanos</h2>
-    <form [formGroup]="contact" (ngSubmit)="onSubmit()" novalidate>
-      <div class="user-box">
-        <input id="email" type="email" formControlName="email" required>
-        <label for="email">Correo electrónico</label>
+          <div class="captcha-section">
+            <div class="captcha-checkbox">
+              <input type="checkbox" id="not-robot">
+              <label for="not-robot">No soy un robot</label>
+            </div>
+          </div>
+          
+          <div class="form-footer">
+            <p>Por favor, completa todos los campos para enviar tu mensaje.</p>
+            <button type="submit" class="submit-btn" [disabled]="!contact.valid">Enviar mensaje</button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="contact-footer">
+        <div class="footer-links">
+          <a href="#"><i class="fas fa-calendar-alt"></i> Organiza un evento</a>
+          <a href="#"><i class="fas fa-shopping-cart"></i> Consulta sobre tu compra</a>
+          <a href="mailto:info&#64;nørvak.com.ec"><i class="fas fa-headset"></i> Soporte al cliente info&#64;nørvak.com.ec</a>
+        </div>
       </div>
 
-      <div class="user-box">
-        <input id="usuario" type="text" formControlName="usuario" required>
-        <label for="usuario">Nombre o alias</label>
-      </div>
-
-      <div class="user-box">
-        <textarea id="mensaje" formControlName="mensaje" required></textarea>
-        <label for="mensaje">Cuéntanos tus intereses</label>
-      </div>
-
-      <p style="font-size: 0.9rem; color: #00ffdd; margin: 0.5rem 0;">
-        Por favor, completa todos los campos para enviar tu mensaje.
+      <p *ngIf="submitted" class="submission-message">
+        ¡Gracias por contactarnos, {{contact.get('usuario')?.value || 'genio/a'}}! Pronto recibirás toda la información en {{contact.get('email')?.value || 'tu correo'}}.
       </p>
-
-    <button type="submit" [disabled]="!contact.valid">Enviar</button>
-  </form>
-</div>
-
-
-   <p *ngIf="submitted">
-  ¡Gracias por contactarnos, {{contact.get('usuario')?.value || 'genio/a'}}! Pronto recibirás toda la información en {{contact.get('email')?.value || 'tu correo'}}.
-</p>
-
+    </div>
   </div>
 </section>
 

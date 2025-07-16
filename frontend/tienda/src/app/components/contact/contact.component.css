@@ -1,117 +1,257 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #1b191d, #620896);
+/* Estilos generales */
+.contact-section {
   display: flex;
+  max-width: 1200px;
+  margin: 5rem auto 2rem; /* Aumentamos el margen superior */
+  font-family: 'Poppins', sans-serif;
+  gap: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.contact-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  padding: 20px;
+}
+
+.contact-image img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.contact-content {
+  flex: 1;
+  padding: 20px 30px;
+}
+
+/* Encabezado */
+.contact-header {
+  background-color: #5c0b55;
+  color: white;
+  padding: 20px;
+  margin: 30px -30px 20px -30px; /* Cambiamos el margen superior de negativo a positivo */
+  border-radius: 0 0 10px 10px;
+}
+
+.contact-header h1 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Sección de métodos de contacto */
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.contact-brand {
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.contact-brand h2 {
+  color: #5c0b55;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.social-contact p {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  color: #555;
+}
+
+.social-contact i {
+  margin-right: 10px;
+  color: #5c0b55;
+  font-size: 1.2rem;
+  width: 25px;
+  text-align: center;
+}
+
+/* Formulario de contacto */
+.contact-form {
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.contact-form h2 {
+  color: #5c0b55;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #5c0b55;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Sección CAPTCHA */
+.captcha-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.captcha-checkbox {
+  display: flex;
   align-items: center;
 }
 
-/* Nuevo estilo para el título Contactanos */
-.contact-title {
-  color: #550191;
-  margin-top: 5rem;   /* Más espacio para bajarlo */
-  margin-bottom: 1rem;
-  font-family: 'Work Sans', sans-serif;
+.captcha-checkbox input {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
 }
 
-
-.login-box {
-  width: 500px;
-  padding: 40px;
-  background: rgba(0, 0, 0, 0.7);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  border-radius: 12px;
-  color: white;
-  box-sizing: border-box;
-}
-
-.login-box h2 {
-  margin-bottom: 30px;
-  text-align: center;
-  color: #f100b5;
-}
-
-/* Formulario */
-form {
-  width: 100%;
-}
-
-.user-box {
-  position: relative;
-  margin-bottom: 25px;
-}
-
-.user-box input,
-.user-box textarea {
-  width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #ffffff;
-  border: none;
-  border-bottom: 1px solid #fff;
-  background: transparent;
-  outline: none;
-  resize: none;
-}
-
-.user-box label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #ccc;
-  pointer-events: none;
-  transition: 0.3s;
-}
-
-.user-box input:focus ~ label,
-.user-box input:valid ~ label,
-.user-box textarea:focus ~ label,
-.user-box textarea:valid ~ label {
-  top: -20px;
-  font-size: 12px;
-  color: #03e9f4;
-}
-
-/* Botón */
-button[type="submit"] {
-  width: 100%;
-  padding: 12px 20px;
-  background-color: #ad3df8;
-  border: none;
-  border-radius: 8px;
-  color: #000;
+.captcha-code {
+  background: #f0f0f0;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-family: monospace;
   font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* Pie del formulario */
+.form-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-footer p {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.submit-btn {
+  background-color: #5c0b55;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s;
 }
 
-button[type="submit"]:hover:not(:disabled) {
-  background-color: #fd35fd;
+.submit-btn:hover:not(:disabled) {
+  background-color: #4a0945;
 }
 
-button:disabled {
+.submit-btn:disabled {
   background-color: #ccc;
   color: #666;
   cursor: not-allowed;
 }
 
-/* Texto informativo */
-form p {
-  text-align: center;
-  font-size: 14px;
-  color: #ccc;
-  margin: 10px 0 20px;
+/* Pie de página */
+.contact-footer {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 30px;
 }
 
-/* Responsive para el título en móviles */
-@media (max-width: 600px) {
-  .contact-title {
-    margin-top: 1.5rem;
-    font-size: 1.5rem;
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-links a {
+  color: #5c0b55;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.footer-links i {
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+.submission-message {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e8f5e9;
+  border-left: 4px solid #4caf50;
+  color: #2e7d32;
+  border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact-section {
+    flex-direction: column;
+    margin: 1rem;
+  }
+  
+  .contact-image {
+    padding: 20px;
+  }
+  
+  .contact-image img {
+    max-width: 100%;
+  }
+  
+  .contact-content {
+    padding: 20px;
+  }
+  
+  .contact-header {
+    margin: -20px -20px 20px -20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .captcha-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .form-footer {
+    align-items: stretch;
+  }
+  
+  .submit-btn {
+    width: 100%;
   }
 }

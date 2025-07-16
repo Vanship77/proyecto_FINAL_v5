@@ -5,9 +5,14 @@
     <span class="toggle-label">Menú</span>
   </button>
   
-  <!-- Título del navbar -->
+  <!-- Logo central -->
   <div class="navbar-brand">
-    <a routerLink="/" class="title" aria-label="Página principal">AVASHIKØL</a>
+    <a href="/" style="text-decoration: none;">
+      <div class="brand-logo">
+        <h1 class="logo-text">AVASHIKØL</h1>
+        <span class="logo-highlight"></span>
+      </div>
+    </a>
   </div>
 
   <!-- Mensaje de bienvenida -->
@@ -16,7 +21,7 @@
     <span class="welcome-text">{{userName}}</span>
   </div>
 
-  <!-- Botón sidebar derecho con estado dinámico -->
+  <!-- Botón cuenta -->
   <button class="navbar-toggle account-toggle" 
           (click)="toggleSidebar2()" 
           [attr.aria-label]="isLoggedIn ? 'Menú de cuenta' : 'Opciones de acceso'" 
@@ -27,11 +32,12 @@
 </nav>
 
 <!-- Sidebar izquierdo -->
-<aside class="sidebar left bg-dark text-white" 
+<aside class="sidebar left" 
        [class.open]="sidebarOpen" 
        [attr.aria-hidden]="!sidebarOpen" 
        aria-modal="true">
   <div class="sidebar-header">
+    <h3 class="sidebar-title">Menú</h3>
     <button class="close-btn" (click)="sidebarOpen = false" aria-label="Cerrar menú principal">
       <i class="bi bi-x-lg"></i>
     </button>
@@ -41,41 +47,47 @@
     <a class="nav-link" routerLink="/home" routerLinkActive="active" (click)="sidebarOpen = false">
       <i class="bi bi-house"></i>
       <span>Inicio</span>
+      <i class="bi bi-chevron-right"></i>
     </a>
     
     <a class="nav-link" routerLink="/nosotros" routerLinkActive="active" (click)="sidebarOpen = false">
       <i class="bi bi-people"></i>
       <span>Nosotros</span>
+      <i class="bi bi-chevron-right"></i>
     </a>
     
     <a class="nav-link" routerLink="/contact" routerLinkActive="active" (click)="sidebarOpen = false">
       <i class="bi bi-envelope"></i>
       <span>Contacto</span>
+      <i class="bi bi-chevron-right"></i>
     </a>
     
     <a class="nav-link" routerLink="/publicaciones" routerLinkActive="active" (click)="sidebarOpen = false">
       <i class="bi bi-calendar3"></i>
-      <span>Eventos Publicados</span>
+      <span>Eventos</span>
+      <i class="bi bi-chevron-right"></i>
     </a>
     
     <a class="nav-link" routerLink="/saber.mas" routerLinkActive="active" (click)="sidebarOpen = false">
       <i class="bi bi-info-circle"></i>
       <span>Saber más</span>
+      <i class="bi bi-chevron-right"></i>
     </a>
     
     <ng-container *ngIf="isLoggedIn && isAdmin">
       <div class="sidebar-divider"></div>
       
       <a class="nav-link admin-link" routerLink="/eventos" routerLinkActive="active" (click)="sidebarOpen = false">
-        <i class="bi bi-box"></i>
-        <span>Modificar Eventos</span>
+        <i class="bi bi-shield-lock"></i>
+        <span>Administración</span>
+        <i class="bi bi-chevron-right"></i>
       </a>
     </ng-container>
   </nav>
   
   <div class="sidebar-footer">
     <a routerLink="/support" class="support-link" (click)="sidebarOpen = false">
-      <i class="bi bi-question-circle"></i>
+      <i class="bi bi-headset"></i>
       <span>Soporte</span>
     </a>
   </div>
@@ -87,6 +99,7 @@
        [attr.aria-hidden]="!sidebar2Open" 
        aria-modal="true">
   <div class="sidebar-header">
+    <h3 class="sidebar-title">{{ isLoggedIn ? 'Tu Cuenta' : 'Acceso' }}</h3>
     <button class="close-btn" (click)="sidebar2Open = false" aria-label="Cerrar menú de usuario">
       <i class="bi bi-x-lg"></i>
     </button>
@@ -97,40 +110,54 @@
       <a class="nav-link" routerLink="/login" routerLinkActive="active" (click)="sidebar2Open = false">
         <i class="bi bi-box-arrow-in-right"></i>
         <span>Iniciar sesión</span>
+        <i class="bi bi-chevron-right"></i>
       </a>
       
       <a class="nav-link" routerLink="/registro" routerLinkActive="active" (click)="sidebar2Open = false">
         <i class="bi bi-person-plus"></i>
-        <span>Crear cuenta</span>
+        <span>Registrarse</span>
+        <i class="bi bi-chevron-right"></i>
       </a>
-        <div class="auth-divider"></div>
+      
+      <div class="auth-divider">
+        <span>o continuar con</span>
+      </div>
 
       <button class="auth-btn github" (click)="loginWithGithub()" aria-label="Ingresar con GitHub">
         <i class="bi bi-github"></i>
-        <span>Ingresar con GitHub</span>
+        <span>GitHub</span>
       </button>
       
       <button class="auth-btn google" (click)="loginWithGoogle()" aria-label="Ingresar con Google">
         <i class="bi bi-google"></i>
-        <span>Ingresar con Google</span>
+        <span>Google</span>
       </button>
     </ng-container>
     
     <ng-template #loggedInButtons>
       <a class="nav-link" routerLink="/profile" routerLinkActive="active" (click)="sidebar2Open = false">
-        <i class="bi bi-person-lines-fill"></i>
-        <span>Perfil</span>
+        <i class="bi bi-person-circle"></i>
+        <span>Mi Perfil</span>
+        <i class="bi bi-chevron-right"></i>
       </a>
       
+      <a class="nav-link" routerLink="/settings" routerLinkActive="active" (click)="sidebar2Open = false">
+        <i class="bi bi-gear"></i>
+        <span>Configuración</span>
+        <i class="bi bi-chevron-right"></i>
+      </a>
+      
+      <div class="sidebar-divider"></div>
+      
       <button class="auth-btn logout" (click)="logout()" aria-label="Cerrar sesión">
-        <i class="bi bi-box-arrow-right"></i>
+        <i class="bi bi-box-arrow-left"></i>
         <span>Cerrar sesión</span>
       </button>
     </ng-template>
   </nav>
 </aside>
 
-<!-- Overlay para cerrar sidebars al hacer clic fuera -->
+<!-- Overlay para cerrar sidebars -->
 <div class="sidebar-overlay" 
      (click)="closeAllSidebars()"
      [class.active]="sidebarOpen || sidebar2Open"

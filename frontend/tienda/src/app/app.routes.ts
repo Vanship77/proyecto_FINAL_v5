@@ -15,6 +15,8 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { SuccessComponent } from './components/success/success.component';
+
 
 // Importa aquí tu componente SaberMasComponent
 import { SaberMasComponent } from './components/saber.mas/saber.mas.component';
@@ -22,6 +24,7 @@ import { SaberMasComponent } from './components/saber.mas/saber.mas.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'success', component: SuccessComponent },
   { path: 'navbar', component: NavbarComponent },
   { path: 'footer', component: FooterComponent },
   { path: 'crud', component: CrudComponent },

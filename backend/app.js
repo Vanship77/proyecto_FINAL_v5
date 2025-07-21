@@ -22,6 +22,7 @@ app.use(cors({
 // Body parser
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/stripe', require('./routes/stripe'));
 
 // Session
 app.use(session({

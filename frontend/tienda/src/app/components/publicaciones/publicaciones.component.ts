@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../../services/evento.service';
 import { Evento } from '../../models/evento';
 import { CommonModule } from '@angular/common';
+import { loadStripe } from '@stripe/stripe-js';
 
 import { RouterModule } from '@angular/router';
 
@@ -47,4 +48,24 @@ activarDarkMode() {
     // Si la carta está abierta, le quitamos clase hover
     return this.detallesVisibles === eventoId ? baseClass + ' no-hover' : baseClass;
   }
+
+async pagar(evento: Evento) {
+  const stripe = await loadStripe('pk_test_51RktNtKxn7zo51ac7i8IAFs6wORIEjHqBpYERPxhsmfphFSmcSJRMEK1tJwVBsU5NRAQNYHxddh53TcLMG6qhEPW00SWXd3C6D');
+
+  const response = await fetch('http://localhost:8080/stripe/create-checkout-session', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ evento }),
+  });
+
+  const session = await response.json();
+
+  const result = await stripe?.redirectToCheckout({
+    sessionId: session.id,
+  });
+
+  if (result?.error) {
+    console.error(result.error.message);
+  }
+}
 }

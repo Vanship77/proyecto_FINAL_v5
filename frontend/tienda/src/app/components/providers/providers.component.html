@@ -1,0 +1,74 @@
+<div class="container">
+  <h2>{{ isEditing ? 'Editar Proveedor' : 'Crear Proveedor' }}</h2>
+  
+  <form (ngSubmit)="onSubmit()" #providerForm="ngForm">
+    <div class="form-group">
+      <label for="companyName">Nombre de la Empresa</label>
+      <input type="text" id="companyName" name="companyName" [(ngModel)]="currentProvider.companyName" required>
+    </div>
+
+    <div class="form-group">
+      <label for="contactFirstName">Nombre del Contacto</label>
+      <input type="text" id="contactFirstName" name="contactFirstName" 
+             [(ngModel)]="currentProvider.contactPerson.firstName" required>
+    </div>
+
+    <div class="form-group">
+      <label for="contactLastName">Apellido del Contacto</label>
+      <input type="text" id="contactLastName" name="contactLastName" 
+             [(ngModel)]="currentProvider.contactPerson.lastName">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" [(ngModel)]="currentProvider.email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Teléfono</label>
+      <input type="tel" id="phone" name="phone" [(ngModel)]="currentProvider.phone">
+    </div>
+
+    <div class="form-group">
+      <label for="serviceType">Tipo de Servicio</label>
+      <select id="serviceType" name="serviceType" [(ngModel)]="currentProvider.serviceType" required>
+        <option *ngFor="let type of serviceTypes" [value]="type">{{type | titlecase}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="isActive">Activo</label>
+      <input type="checkbox" id="isActive" name="isActive" [(ngModel)]="currentProvider.isActive">
+    </div>
+
+    <button type="submit">{{ isEditing ? 'Actualizar' : 'Crear' }}</button>
+    <button type="button" (click)="resetForm()" *ngIf="isEditing">Cancelar</button>
+  </form>
+
+  <h2>Lista de Proveedores</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Empresa</th>
+        <th>Contacto</th>
+        <th>Email</th>
+        <th>Servicio</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let provider of providers">
+        <td>{{ provider.companyName }}</td>
+        <td>{{ provider.contactPerson.firstName }} {{ provider.contactPerson.lastName }}</td>
+        <td>{{ provider.email }}</td>
+        <td>{{ provider.serviceType }}</td>
+        <td>{{ provider.isActive ? 'Activo' : 'Inactivo' }}</td>
+        <td>
+          <button (click)="editProvider(provider)">Editar</button>
+          <button (click)="deleteProvider(provider._id!)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

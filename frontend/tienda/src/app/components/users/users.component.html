@@ -1,0 +1,66 @@
+<div class="container">
+  <h2>{{ isEditing ? 'Editar Usuario' : 'Crear Usuario' }}</h2>
+  
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <div class="form-group">
+      <label for="firstName">Nombre</label>
+      <input type="text" id="firstName" name="firstName" [(ngModel)]="currentUser.firstName" required>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Apellido</label>
+      <input type="text" id="lastName" name="lastName" [(ngModel)]="currentUser.lastName">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" [(ngModel)]="currentUser.email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" name="password" [(ngModel)]="currentUser.password" [required]="!isEditing">
+    </div>
+
+    <div class="form-group">
+      <label for="role">Rol</label>
+      <select id="role" name="role" [(ngModel)]="currentUser.role" required>
+        <option value="user">Usuario</option>
+        <option value="admin">Administrador</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="isActive">Activo</label>
+      <input type="checkbox" id="isActive" name="isActive" [(ngModel)]="currentUser.isActive">
+    </div>
+
+    <button type="submit">{{ isEditing ? 'Actualizar' : 'Crear' }}</button>
+    <button type="button" (click)="resetForm()" *ngIf="isEditing">Cancelar</button>
+  </form>
+
+  <h2>Lista de Usuarios</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.firstName }} {{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.isActive ? 'Activo' : 'Inactivo' }}</td>
+        <td>
+          <button (click)="editUser(user)">Editar</button>
+          <button (click)="deleteUser(user._id!)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
